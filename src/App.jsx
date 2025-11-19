@@ -2,13 +2,16 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './login';
+import Home from './pages/Home';
+import MyPage from './pages/MyPage';
+import SignUp from './pages/SignUp';
 
 //<Route path = "주소규칙" element = {보여 줄 컴포넌트}/> route 주소형식
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />}></Route>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/myPage" element={<MyPage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
