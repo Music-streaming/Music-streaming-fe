@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
 import TextInput from '../components/common/TextInput';
+import { signup } from '../api/auth';
 
 function SignUp() {
   const [email, setEmail] = useState('');
@@ -9,9 +10,9 @@ function SignUp() {
   const [pw, setPw] = useState('');
   const [pwcheck, setPwCheck] = useState('');
   const navigate = useNavigate();
-  const isPwMath = pw.length > 0 && pw === pwcheck;
+  const isPwMatch = pw.length > 0 && pw === pwcheck;
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (pw !== pwcheck) {
       alert('비밀번호가 서로 일치하지 않습니다.');
       return;
@@ -22,8 +23,19 @@ function SignUp() {
       return;
     }
 
-    alert('회원가입이 완료되었습니다!');
-    navigate('/login');
+    try {
+      const data = await signup({
+        email,
+        password: pw,
+        username: id,
+      });
+
+      console.log('회원가입 성공 응답:', data);
+      alert('회원가입이 완료되었습니다!');
+      navigate('/login');
+    } catch (err) {
+      alert(err.message || '회원가입 중 오류가 발생했습니다.');
+    }
   };
 
   return (
@@ -45,7 +57,6 @@ function SignUp() {
       <p>아이디</p>
       <TextInput
         placeholder="honggildong"
-        type="text"
         value={id}
         onChange={(e) => setId(e.target.value)}
       />
@@ -69,7 +80,7 @@ function SignUp() {
           value={pwcheck}
           onChange={(e) => setPwCheck(e.target.value)}
         />
-        {isPwMath && <span>✅</span>}
+        {isPwMatch && <span>✅</span>}
       </div>
 
       <br />
