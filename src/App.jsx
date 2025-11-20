@@ -1,8 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Home from "./pages/Home"
-import MyPage from "./pages/MyPage";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import MyPage from './pages/MyPage';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import Choice from './pages/Choice';
+import PlayList from './pages/PlayList';
+import Search from './pages/Search';
 
 function App() {
   return (
@@ -14,10 +17,10 @@ function App() {
         <Route path="/signUp" element={<SignUp />}></Route>
         <Route path="/choice/:category/:id" element={<Choice />}></Route>
         <Route path="/playlist/:id" element={<PlayList />}></Route>
-        <Route path="/search/:id" element={Search />}></Route>
+        <Route path="/search/:id" element={<Search />}></Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
