@@ -1,0 +1,122 @@
+/* 전체 페이지 영역: MainLayout의 main 안을 꽉 채우는 박스 */
+.wrapper {
+  width: 100%;
+  padding: 60px 80px;
+  box-sizing: border-box;
+  min-width:100%;
+  margin:0 auto;
+}
+/* 상단: 커버 + 설명 + 버튼 + 더보기 */
+.header {
+  display: flex;
+  gap: 40px;
+  width:100%;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+/* 앨범 커버 */
+.cover {
+  width: 260px;
+  height: 260px;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+/* 텍스트 정보 묶음 */
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.owner {
+  color: #76a1f5;
+  font-size: 14px;
+}
+
+.update {
+  color: #aaaaaa;
+  font-size: 13px;
+}
+
+/* 재생 / 셔플 버튼 줄 */
+.buttons {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+}
+
+.playBtn,
+.shuffleBtn {
+  background: #3b82f6;
+  border-radius: 8px;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.moreBtn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 트랙 테이블 */
+.trackTable {
+  width: 100%;
+  margin-top: 32px;
+  border-collapse: collapse;
+  color: white;
+}
+
+.trackTable th {
+  text-align: left;
+  padding: 0 16px 12px 16px;
+  color: #bbbbbb;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.trackTable td {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+/* 각 행 */
+.row {
+  transition: background 0.2s ease;
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* 노래 제목 셀(이미지 + 텍스트) */
+.songTitle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 곡 썸네일 */
+.smallImg {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* 우측 … 버튼 */
+.dotBtn {
+  background: none;
+  cursor: pointer;
+  border: none;
+}
