@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
 import TextInput from '../components/common/TextInput';
 import { signup } from '../api/auth';
+import './Auth.css';
 
 function SignUp() {
   const [email, setEmail] = useState('');
@@ -39,54 +40,61 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <div>
-        <button onClick={() => navigate('/login')}>로그인</button>
-        <button onClick={() => navigate('/signup')}>회원가입</button>
+    <div className="auth-page">
+      <div className="auth-panel">
+        <div className="auth-tabs">
+          <button onClick={() => navigate('/login')}>로그인</button>
+          <button className="active-tab" onClick={() => navigate('/signup')}>
+            회원가입
+          </button>
+        </div>
+
+        <div className="auth-form">
+          <label className="field-label">이메일 주소</label>
+          <TextInput
+            placeholder="example@knu.ac.kr"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <br />
+
+          <label className="field-label">아이디</label>
+          <TextInput
+            placeholder="honggildong"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
+          <br />
+
+          <label className="field-label">비밀번호 입력</label>
+          <TextInput
+            placeholder="••••••••"
+            type="password"
+            value={pw}
+            onChange={(e) => setPw(e.target.value)}
+          />
+
+          <br />
+
+          <label className="field-label">비밀번호 확인</label>
+          <div className="pw-check">
+            <TextInput
+              placeholder="••••••••"
+              type="password"
+              value={pwcheck}
+              onChange={(e) => setPwCheck(e.target.value)}
+            />
+            {isPwMatch && <span className="check-icon">✔</span>}
+          </div>
+
+          <br />
+
+          <Button className="auth-submit" onClick={handleSignUp}>
+            회원가입
+          </Button>
+        </div>
       </div>
-
-      <p>email</p>
-      <TextInput
-        placeholder="example@knu.ac.kr"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-
-      <br />
-
-      <p>아이디</p>
-      <TextInput
-        placeholder="honggildong"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-      />
-      <br />
-
-      <p>비밀번호 입력</p>
-      <TextInput
-        placeholder="···········"
-        type="password"
-        value={pw}
-        onChange={(e) => setPw(e.target.value)}
-      />
-
-      <br />
-
-      <p>비밀번호 확인</p>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <TextInput
-          placeholder="···········"
-          type="password"
-          value={pwcheck}
-          onChange={(e) => setPwCheck(e.target.value)}
-        />
-        {isPwMatch && <span>✅</span>}
-      </div>
-
-      <br />
-      <br />
-
-      <Button onClick={handleSignUp}>회원가입</Button>
     </div>
   );
 }

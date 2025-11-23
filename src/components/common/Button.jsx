@@ -1,13 +1,15 @@
-function Button({ children, ...props }) {
+function Button({ children, className = '', style = {}, ...props }) {
   return (
     <button
       {...props}
+      className={className}
       style={{
-        padding: '10px 16px',
-        borderRadius: '8px',
+        padding: '16px 20px',
+        borderRadius: '30px',
         border: 'none',
         cursor: 'pointer',
         fontWeight: '600',
+        ...style,
       }}
     >
       {children}
