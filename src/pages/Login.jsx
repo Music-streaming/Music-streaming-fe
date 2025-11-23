@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
 import TextInput from '../components/common/TextInput';
 import { login } from '../api/auth';
-import './Auth.css';
+import '../style/Auth.css';
 
 function Login() {
   const [email, setEmail] = useState('');
