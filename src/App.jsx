@@ -5,6 +5,9 @@ import Login from './pages/login';
 import Home from './pages/Home';
 import MyPage from './pages/MyPage';
 import SignUp from './pages/SignUp';
+import Album from './pages/Album';
+import Artist from './pages/Artist';
+import Music from './pages/Music';
 
 //<Route path = "주소규칙" element = {보여 줄 컴포넌트}/> route 주소형식
 function App() {
@@ -15,7 +18,9 @@ function App() {
         <Route path="/myPage" element={<MyPage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
-        <Route path="/choice/:category/:id" element={<Choice />}></Route>
+        <Route path="/artist:id" element={<Artist />}></Route>
+        <Route path="/album:id" element={<Album />}></Route>
+        <Route path="/music:id" element={<Music />}></Route>
         <Route path="/playlist/:id" element={<PlayList />}></Route>
         <Route path="/search/:id" element={<Search />}></Route>
         <Route paht="*" element={<h2>페이지를 찾을 수 없습니다 (404)</h2>} />
