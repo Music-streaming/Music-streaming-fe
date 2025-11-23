@@ -1,3 +1,4 @@
+import { Route } from 'react-router-dom';
 import '../../style/mediacard.css';
 
 function MediaCard({ imageSrc, title, artist, onClick }) {
