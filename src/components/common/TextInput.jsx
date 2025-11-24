@@ -1,5 +1,5 @@
-function TextInput({ className, ...props }) {
-  return <input {...props} className={className} />;
+function TextInput({ className = '', style = {}, ...props }) {
+  return <input {...props} className={className} style={style} />;
 }
 
 export default TextInput;

@@ -17,3 +17,9 @@
 .track-list .track-item:nth-child(even) {
   background-color: none;
 }
+
+.track-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
