@@ -1,9 +1,16 @@
-function MoreButton({ onClick, size = 6, color = '#3D68BC' }) {
+function MoreButton({
+  onClick,
+  size = 28,
+  dotSize = 4,
+  bgColor = '#252525',
+  dotColor = '#3D68BC',
+}) {
   const dotStyle = {
-    width: size,
-    height: size,
+    width: dotSize,
+    height: dotSize,
     borderRadius: '50%',
-    backgroundColor: color,
+    backgroundColor: dotColor,
+    display: 'inline-block',
   };
 
   return (
@@ -11,17 +18,30 @@ function MoreButton({ onClick, size = 6, color = '#3D68BC' }) {
       type="button"
       onClick={onClick}
       style={{
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        backgroundColor: bgColor,
         border: 'none',
-        background: 'transparent',
-        display: 'flex',
-        gap: size,
-        padding: 0,
         cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 0,
       }}
     >
-      <span style={dotStyle}></span>
-      <span style={dotStyle}></span>
-      <span style={dotStyle}></span>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: dotSize * 0.7,
+        }}
+      >
+        <span style={dotStyle}></span>
+        <span style={dotStyle}></span>
+        <span style={dotStyle}></span>
+      </div>
     </button>
   );
 }
