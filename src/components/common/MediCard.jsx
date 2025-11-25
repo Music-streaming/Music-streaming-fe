@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import '../../style/mediacard.css';
 
-export default function MediaCard({
+
+function MediaCard({
   imageSrc,
   title,
   artist,
@@ -28,3 +29,4 @@ export default function MediaCard({
   );
 }
 
+export default  MediaCard;

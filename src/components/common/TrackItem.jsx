@@ -1,6 +1,6 @@
 import style from './TrackItem.module.css';
 
-export default function TrackItem({ index, title, duration, isActive, onClick }) {
+function TrackItem({ index, title, duration, isActive, onClick }) {
   return (
     <div
    className={`${style["track-item"]} ${isActive ? style.active : ""}`} onClick={onClick}
@@ -11,4 +11,6 @@ export default function TrackItem({ index, title, duration, isActive, onClick })
     </div>
   );
 }
+
+export default TrackItem;
 
