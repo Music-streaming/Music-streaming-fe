@@ -25,10 +25,10 @@ function App() {
         <Route path="/artist/:id" element={<Artist />}></Route>
         <Route path="/album/:id" element={<Album />}></Route>
         <Route path="/song/:id" element={<Song />}></Route>
-        <Route path="/playlist/:id" element={<PlayList />}></Route>
+        <Route path="/playlist/:slug" element={<PlayList />}></Route>
         <Route path="/search/:id" element={<Search />}></Route>
-        <Route path="*" element={<h2>페이지를 찾을 수 없습니다 (404)</h2>} />
       </Route>
+      <Route path="*" element={<h2>페이지를 찾을 수 없습니다 (404)</h2>} />
     </Routes>
   );
 }
