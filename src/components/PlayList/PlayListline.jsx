@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './PlayListline.module.css';
+import  Star  from '../../../public/Star.png';
 
 export default function PlayListline(){
 
@@ -28,6 +29,7 @@ export default function PlayListline(){
                        onClick={()=> handleNavigate(list.slug)}
                        className = {styles.listItem}
                        >
+                        <img src = {Star} className = {styles.icon} />
                         <span className = {styles.text}>{list.name}</span>
                        </li>
                 ))}

@@ -8,6 +8,7 @@ export default function MainLayout({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
+    <>
     <div className={styles.layout}>
       
       <div className={styles.sidebarWrapper}>
@@ -15,15 +16,19 @@ export default function MainLayout({ children }) {
       </div>
       
       <div className={styles.mainArea}>
-        <main className={styles.main}>{children}</main>
-
+        <main className={styles.main}>
+          {children}
+          </main>
       </div>
-              <Playerbar />
+
 
       {isModalOpen && (
         <SearchModal onColose={() => setIsModalOpen(false)} />
       )} 
 
     </div>
+
+     <Playerbar />
+     </>
   );
 }

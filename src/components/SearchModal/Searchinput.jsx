@@ -24,6 +24,7 @@ export default function SearchInput() {
   // Enter 키 입력 핸들러
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
       handleFinalSearch(searchTerm);
     }
   };

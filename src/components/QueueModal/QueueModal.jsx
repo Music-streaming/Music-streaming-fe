@@ -1,5 +1,6 @@
 import { usePlayer } from "../../context/PlayerContext";
 import styles from "./QueueModal.module.css";
+import Close from "../../../public/close.png";
 
 export default function QueueModal({ onClose }) {
   const { queue, currentIndex, startQueue } = usePlayer();
@@ -8,8 +9,7 @@ export default function QueueModal({ onClose }) {
     <div className={styles.overlay}>
       <div className={styles.panel}>
         <div className={styles.header}>
-          <h2>현재 재생목록</h2>
-          <button onClick={onClose}>✖</button>
+          <button onClick={onClose}><img src = {Close} alt = "close"/></button>
         </div>
 
         <div className={styles.list}>

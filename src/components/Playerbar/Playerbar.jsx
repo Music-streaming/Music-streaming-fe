@@ -13,6 +13,7 @@ import Repeat from "../../../public/Repeat.png";
 import PlayButton from "../../../public/PlayButton.png";
 import Back from "../../../public/Back.png";
 import DefaultImage from "../../../public/image.png";
+import Pause from "../../../public/Pause.png";
 
 export default function PlayerBar() {
   const {
@@ -76,7 +77,7 @@ export default function PlayerBar() {
 
             {/* 재생 / 일시정지 */}
             <button onClick={togglePlay}>
-              {isPlaying ? "⏸" : <img src={PlayButton} alt="play" />}
+              {isPlaying ? <img src = {Pause} alt="pause"/> : <img src={PlayButton} alt="play" />}
             </button>
 
             {/* 다음곡 */}
@@ -91,7 +92,7 @@ export default function PlayerBar() {
 
           </div>
 
-          {/* 🔹 진행바 */}
+          {/* 🔹 진행바 
           <div className={styles.progress}>
             <input
               type="range"
@@ -102,6 +103,7 @@ export default function PlayerBar() {
               disabled={isEmpty}
             />
           </div>
+          */}
         </div>
 
 

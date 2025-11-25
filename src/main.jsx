@@ -4,11 +4,19 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css'
 import App from './App.jsx'
 import { PlayerProvider } from './context/PlayerContext.jsx';
+import { SearchProvider } from './context/SearchContext.jsx';
+import { AlbumProvider } from './context/AlbumContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <PlayerProvider><App /></PlayerProvider>
+    <AlbumProvider>
+       <PlayerProvider>
+        <SearchProvider>
+          <App />
+          </SearchProvider>
+          </PlayerProvider>
+          </AlbumProvider>
     </BrowserRouter>
   </StrictMode>,
 )

@@ -1,0 +1,20 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.item img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.name {
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.artist {
+  font-size: 14px;
+  color: #aaa;
+}

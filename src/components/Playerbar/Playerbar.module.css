@@ -3,13 +3,52 @@
   bottom: 0; left: 0;
   width: 100%;
   height: 96px;
-  background: #000;
+  
+  background: rgba(0, 0, 0, 0.5);     /* 반투명 */
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  z-index: 10;
+
+   z-index: 10; 
+}
+.controls,.right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px; /* 버튼 사이 간격 */
+}
+
+
+.controls button, .right button{
+  background: none;
+  border:none;
+  padding: 0;
+  margin:0;
+  display:flex;
+  outline: 0;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
+
+}
+
+.controls button:focus-visible {
+  outline: 2px solid #3B82F6;   /* 파란색 강조 */
+  border-radius: 6px;
+}
+
+.controls button img{
+  width:28px;
+  height : 28px;
+  object-fit:contain;
+}
+
+.controls button:focus{
+  outline:none;
 }
 
 /* 왼쪽 영역 */
@@ -52,6 +91,7 @@
 .title {
   font-size: 32px;
   font-weight: bold;
+  color:white;
 }
 
 .owner {
@@ -139,4 +179,5 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: white;
 }

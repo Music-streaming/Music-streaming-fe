@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./PlaylistPage.module.css";
 import { usePlayer } from "../../context/PlayerContext";
+import MediaHeader from "../../components/Header/MediaHeader";
 
 import PlayIcon from "../../../public/PlayButton.png";
 import ShuffleIcon from "../../../public/Shuffle.png";
@@ -86,28 +87,17 @@ export default function PlaylistPage() {
   return (
     <div className={styles.wrapper}>
       {/* 상단: 커버 + 정보 + 버튼 */}
-      <div className={styles.header}>
-        <img className={styles.cover} src={playlist.coverImage} alt="cover" />
-
-        <div className={styles.meta}>
-          <h2 className={styles.title}>{playlist.title}</h2>
-          <p className={styles.owner}>{playlist.owner}</p>
-          <p className={styles.update}>{playlist.updatedAt}</p>
-
-          <div className={styles.buttons}>
-            <button className={styles.playBtn} onClick={handlePlayAll}>
-              <img src={PlayIcon} alt="play" />
-            </button>
-            <button className={styles.shuffleBtn} onClick={handleShuffle}>
-              <img src={ShuffleIcon} alt="shuffle" />
-            </button>
-          </div>
-        </div>
-
+        <MediaHeader
+        cover={playlist.coverImage}
+        title={playlist.title}
+        subtitle={playlist.owner}
+        extraInfo={playlist.updatedAt}
+        onPlay={handlePlayAll}
+        onShuffle={handleShuffle}
+        />
         <button className={styles.moreBtn} onClick={copyShareLink}>
           <img src={MoreIcon} alt="more" />
         </button>
-      </div>
 
       {/* 하단: 트랙 리스트 */}
       <table className={styles.trackTable}>

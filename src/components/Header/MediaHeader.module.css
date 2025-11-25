@@ -1,17 +1,17 @@
 /* 전체 페이지 영역: MainLayout의 main 안을 꽉 채우는 박스 */
 .wrapper {
   width: 100%;
-  padding: 60px 80px;
+  max-width: 1400px;
+  margin: 0 auto;         /* 가운데 정렬 */
+  padding: 40px 60px;
   box-sizing: border-box;
-  min-width:100%;
-  margin:0 auto;
 }
 /* 상단: 커버 + 설명 + 버튼 + 더보기 */
 .header {
   display: flex;
   gap: 40px;
-  width:100%;
-  align-items: flex-end;
+  align-items: center;
+  margin-bottom: 32px;
 }
 
 /* 앨범 커버 */
@@ -26,20 +26,17 @@
 .meta {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  position : relative;
+  gap: 5px;
 }
 
 .title {
   font-size: 32px;
   font-weight: 700;
-  position:relative;
-  margin-top:14px;
 }
 
 .owner {
   color: #76a1f5;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .update {
@@ -49,7 +46,7 @@
 
 /* 재생 / 셔플 버튼 줄 */
 .buttons {
-  margin-top: 0px;
+  margin-top: 8px;
   display: flex;
   gap: 12px;
 }
