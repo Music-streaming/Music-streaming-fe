@@ -1,33 +1,35 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Login from './pages/login';
+import MainLayout from './components/MainLayout/MainLayout';
+import Login from './pages/Auth/Login';
 import Home from './pages/Home';
 import MyPage from './pages/MyPage';
-import SignUp from './pages/SignUp';
-import Album from './pages/Album';
+import SignUp from './pages/Auth/SignUp';
+import Album from './pages/Album/Album';
 import Artist from './pages/Artist';
-import Music from './pages/Music';
-import PlayList from './pages/PlayList';
-import Search from './pages/Search';
+import Song from './pages/SongPage/Songpage';
+import PlayList from './pages/PlaylistPage/PlaylistPage';
+import Search from './pages/SearchPage/SearchPage';
 
 //<Route path = "주소규칙" element = {보여 줄 컴포넌트}/> route 주소형식
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
+      <Route path="/login" element={<Login />}></Route>
+      <Route path="/signup" element={<SignUp />}></Route>
+
+      <Route element={<MainLayout />}>
         <Route path="/" element={<Home />}></Route>
         <Route path="/myPage" element={<MyPage />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/artist/:id" element={<Artist />}></Route>
         <Route path="/album/:id" element={<Album />}></Route>
-        <Route path="/music/:id" element={<Music />}></Route>
+        <Route path="/song/:id" element={<Song />}></Route>
         <Route path="/playlist/:id" element={<PlayList />}></Route>
         <Route path="/search/:id" element={<Search />}></Route>
-        <Route paht="*" element={<h2>페이지를 찾을 수 없습니다 (404)</h2>} />
-      </Routes>
-    </BrowserRouter>
+        <Route path="*" element={<h2>페이지를 찾을 수 없습니다 (404)</h2>} />
+      </Route>
+    </Routes>
   );
 }
 

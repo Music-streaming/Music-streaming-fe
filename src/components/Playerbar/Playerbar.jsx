@@ -1,19 +1,19 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
-import { usePlayer } from "../../context/PlayerContext";
-import styles from "./PlayerBar.module.css";
-import QueueModal from "../QueueModal/QueueModal";
+import { useState } from 'react';
+import { usePlayer } from '../../context/PlayerContext';
+import styles from './PlayerBar.module.css';
+import QueueModal from '../QueueModal/QueueModal';
 
 // 이미지 아이콘들
-import List from "../../../public/list.png";
-import Lyric from "../../../public/lyric.png";
-import Next from "../../../public/Next.png";
-import Shuffle from "../../../public/Shuffle.png";
-import Repeat from "../../../public/Repeat.png";
-import PlayButton from "../../../public/PlayButton.png";
-import Back from "../../../public/Back.png";
-import DefaultImage from "../../../public/image.png";
-import Pause from "../../../public/Pause.png";
+import List from '../../assets/list.png';
+import Lyric from '../../assets/lyric.png';
+import Next from '../../assets/Next.png';
+import Shuffle from '../../assets/Shuffle.png';
+import Repeat from '../../assets/Repeat.png';
+import PlayButton from '../../assets/PlayButton.png';
+import Back from '../../assets/Back.png';
+import DefaultImage from '../../assets/image.png';
+import Pause from '../../assets/Pause.png';
 
 export default function PlayerBar() {
   const {
@@ -40,10 +40,9 @@ export default function PlayerBar() {
   return (
     <>
       <div className={styles.playerBar}>
-
         {/* 🔹 좌측 - 트랙 정보 */}
         <div className={styles.left}>
-          <img 
+          <img
             src={isEmpty ? DefaultImage : currentTrack.albumImage}
             className={styles.thumbnail}
             alt="album"
@@ -51,20 +50,17 @@ export default function PlayerBar() {
 
           <div className={styles.info}>
             <div className={styles.title}>
-              {isEmpty ? "재생 중인 곡 없음" : currentTrack.title}
+              {isEmpty ? '재생 중인 곡 없음' : currentTrack.title}
             </div>
             <div className={styles.artist}>
-              {isEmpty ? "곡을 선택해주세요" : currentTrack.artist}
+              {isEmpty ? '곡을 선택해주세요' : currentTrack.artist}
             </div>
           </div>
         </div>
 
-
         {/* 🔹 중앙 - 재생 컨트롤 */}
         <div className={styles.center}>
-          
           <div className={styles.controls}>
-
             {/* 셔플 */}
             <button onClick={toggleShuffle}>
               <img src={Shuffle} alt="shuffle" />
@@ -77,7 +73,11 @@ export default function PlayerBar() {
 
             {/* 재생 / 일시정지 */}
             <button onClick={togglePlay}>
-              {isPlaying ? <img src = {Pause} alt="pause"/> : <img src={PlayButton} alt="play" />}
+              {isPlaying ? (
+                <img src={Pause} alt="pause" />
+              ) : (
+                <img src={PlayButton} alt="play" />
+              )}
             </button>
 
             {/* 다음곡 */}
@@ -89,7 +89,6 @@ export default function PlayerBar() {
             <button onClick={toggleRepeat}>
               <img src={Repeat} alt="repeat" />
             </button>
-
           </div>
 
           {/* 🔹 진행바 
@@ -106,7 +105,6 @@ export default function PlayerBar() {
           */}
         </div>
 
-
         {/* 🔹 우측 - 재생목록 / 가사 */}
         <div className={styles.right}>
           <button onClick={() => setIsQueueOpen(true)}>
@@ -120,9 +118,7 @@ export default function PlayerBar() {
       </div>
 
       {/* 재생목록 펼치기 */}
-      {isQueueOpen && (
-        <QueueModal onClose={() => setIsQueueOpen(false)} />
-      )}
+      {isQueueOpen && <QueueModal onClose={() => setIsQueueOpen(false)} />}
     </>
   );
 }
