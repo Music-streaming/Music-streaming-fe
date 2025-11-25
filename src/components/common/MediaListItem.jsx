@@ -1,4 +1,3 @@
-
 import '../../style/mediacard.css';
 import MoreButton from './MoreButton';
 

@@ -5,8 +5,11 @@ function TrackItem({ index, title, duration, isActive, onClick }) {
     <div
    className={`${style["track-item"]} ${isActive ? style.active : ""}`} onClick={onClick}
     >
-      <span className= {style["track-index"]}>{index}</span>
-      <span className={style["track-title"]}>{title}</span>
+      <div className = {style.left}>
+            <span className= {style["track-index"]}>{index}</span>
+            <span className={style["track-title"]}>{title}</span>
+      </div>
+      
       <span className={style["track-duration"]}>{duration}</span>
     </div>
   );
