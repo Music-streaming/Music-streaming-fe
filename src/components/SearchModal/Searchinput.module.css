@@ -1,0 +1,23 @@
+.searchBox {
+    position: relative;
+    width: 12rem;
+}
+
+/* 검색창 스타일 */
+.input {
+    padding: 12px 16px;
+    width: 12rem;
+    max-width: 24rem; /* w-96 = 24rem */
+    border: 1px solid #d1d5db; /* gray-300 */
+    border-radius: 9999px; /* rounded-full */
+    background-color: white;
+    color: #374151; /* gray-700 */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2); /* shadow-md */
+    font-size: 1rem;
+    outline: none;
+}
+
+/* focus 시 자연스러운 효과 */
+.input:focus {
+    border-color: #9ca3af; /* focus 시 좀 더 진한 회색 */
+}

@@ -1,0 +1,22 @@
+.track-list {
+  width: 100%;
+  max-width:800px;
+  margin:top;
+}
+
+.track-item {
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  algin-items : center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tracklist .track-item:nth-child(odd) {
+  background-color: rgba(169, 169, 169, 1);
+}
+
+.tracklist .track-item:nth-child(even) {
+  background-color: transparent;
+}

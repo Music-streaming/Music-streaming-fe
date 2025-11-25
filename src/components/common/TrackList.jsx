@@ -1,8 +1,9 @@
 import TrackItem from './TrackItem';
+import style from './TrackItem.module.css';
 
-function TrackList({ tracks, currentTrackId, onSelect }) {
+function TrackList({ tracks = [], currentTrackId, onSelect }) {
   return (
-    <div className="track-list">
+    <div className={style['track-list']}>
       {tracks.map((track, i) => (
         <TrackItem
           key={track.id}

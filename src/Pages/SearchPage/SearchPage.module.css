@@ -1,0 +1,46 @@
+.wrapper {
+  width: 100%;
+  padding: 5px 20px;
+  box-sizing: border-box;
+  padding-left: 50px;
+  display:grid;
+  grid-template-columns: 500px 1fr;
+  column-gap:40px;
+  overflow-x : hidden;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 225px); /* ← 오타 고정 */
+  column-gap: 50px;
+  row-gap : 10px;
+  
+  justify-content: start;
+}
+
+.trackColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;   /* 각 노래 줄 간 간격 */
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+}
+
+.trackSection {
+  flex: 1; 
+  overflow-y: auto;
+  margin-top: 16px;
+}

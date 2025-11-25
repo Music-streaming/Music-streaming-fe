@@ -1,0 +1,53 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+  
+}
+
+/* "PLAY LIST" 텍스트 */
+.title {
+    color: #FFFFFF;             /* text-gray-400 */
+    font-size: 1.3rem;        /* text-sm */
+    font-weight: bold;
+    letter-spacing: 0.1em;      /* tracking-widest */
+    margin-bottom: 1rem;        /* mb-4 */
+}
+
+/* 리스트 전체 */
+.listWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;           /* space-y-3 */
+    padding-left:0;
+    margin-left:0;
+}
+
+
+
+/* 각 리스트 아이템 */
+.listItem {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;           /* py-1 px-2 */
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;            /* text-base */
+    transition: background 0.2s ease;
+
+}
+
+.listItem:hover {
+    background-color: #303030;  /* hover:bg-[#303030] */
+}
+
+/* 아이콘 자리 (빈 span) */
+.icon {
+    font-size: 1.5rem;          /* text-2xl */
+    margin-right: 0.75rem;      /* mr-3 */
+}
+
+/* 텍스트 */
+.text {
+    font-weight: 600;           /* font-semibold */
+}

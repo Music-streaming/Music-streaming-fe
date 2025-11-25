@@ -1,0 +1,183 @@
+.playerBar {
+  position: fixed;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 96px;
+  
+  background: rgba(0, 0, 0, 0.5);     /* 반투명 */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+   z-index: 10; 
+}
+.controls,.right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px; /* 버튼 사이 간격 */
+}
+
+
+.controls button, .right button{
+  background: none;
+  border:none;
+  padding: 0;
+  margin:0;
+  display:flex;
+  outline: 0;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
+
+}
+
+.controls button:focus-visible {
+  outline: 2px solid #3B82F6;   /* 파란색 강조 */
+  border-radius: 6px;
+}
+
+.controls button img{
+  width:28px;
+  height : 28px;
+  object-fit:contain;
+}
+
+.controls button:focus{
+  outline:none;
+}
+
+/* 왼쪽 영역 */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0; /* 🔥 매우 중요 */
+}
+
+/* 실제 콘텐츠 폭을 제한하는 컨테이너 */
+.inner {
+    width: 100%;
+    max-width: 900px;             /* 시안 기준으로 적당한 값 */
+}
+
+/* ---------- HEADER ---------- */
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.cover {
+  width: 260px;
+  height: 260px;
+  border-radius: 3px;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color:white;
+}
+
+.owner {
+  color: #76a1f5;
+}
+
+.update {
+  color: #aaa;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.playBtn,
+.shuffleBtn {
+  background: #3b82f6;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.moreBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  background: none;
+}
+
+/* ---------- TRACK LIST ---------- */
+.trackTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trackTable th {
+  text-align: left;
+  padding-bottom: 15px;
+  color: #bbb;
+}
+
+.row {
+  transition: 0.2s;
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.songTitle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.smallImg {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+}
+
+.dotBtn {
+  background: none;
+  cursor: pointer;
+}
+.thumbnail {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* 🔥 텍스트 줄바꿈 허용 */
+}
+
+.title, .artist {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+}
