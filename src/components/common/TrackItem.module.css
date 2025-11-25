@@ -13,6 +13,12 @@
   border-radius: 5px;
 }
 
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .tracklist .track-item:nth-child(odd) {
   background-color: rgba(169, 169, 169, 1);
 }

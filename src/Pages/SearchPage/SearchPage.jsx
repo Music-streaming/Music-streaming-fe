@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import ArtistCarousel from "../../components/Search/ArtistCarousel";
-import AlbumGrid from "../../components/Search/AlbumGrid";
-import TrackList from "../../components/common/TrackList";
 import MediaCard from "../../components/common/MediCard";
 import MediaListItem from "../../components/common/MediaListItem";
 
