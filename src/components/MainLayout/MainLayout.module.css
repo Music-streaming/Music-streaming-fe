@@ -1,8 +1,9 @@
+/* 전체 레이아웃 (sidebar + main + playerbar) */
 .layout {
   display: flex;
   width: 100%;
-  height: 100vh;
-  min-height: 100vh;
+  height: 100vh; /* 전체 높이를 layout이 관리 */
+  overflow: hidden; /* 내부에서만 스크롤 */
   background-color: #000;
   color: white;
 }
@@ -25,6 +26,7 @@
   padding-bottom: 96px;
 }
 
+/* MainArea: 스크롤 담당 */
 .mainArea {
   flex: 1;
   display: flex;

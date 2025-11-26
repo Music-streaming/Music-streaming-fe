@@ -1,30 +1,16 @@
-import '../../style/TrackItem.css';
-import MoreButton from '../common/MoreButton';
+import style from './TrackItem.module.css';
 
-function TrackItem({
-  index,
-  title,
-  duration,
-  isActive,
-  onRowClick,
-  onMoreClick,
-}) {
+function TrackItem({ index, title, duration, isActive, onClick }) {
   return (
     <div
-      className={`track-item ${isActive ? 'active' : ''}`}
-      onClick={onRowClick}
+   className={`${style["track-item"]} ${isActive ? style.active : ""}`} onClick={onClick}
     >
-      <span className="track-index">{index}</span>
-      <span className="track-title">{title}</span>
-      <div className="track-right">
-        <span className="track-duration">{duration}</span>
-        <MoreButton
-          onClick={(e) => {
-            e.stopPropagation();
-            onMoreClick();
-          }}
-        />
+      <div className = {style.left}>
+            <span className= {style["track-index"]}>{index}</span>
+            <span className={style["track-title"]}>{title}</span>
       </div>
+      
+      <span className={style["track-duration"]}>{duration}</span>
     </div>
   );
 }
