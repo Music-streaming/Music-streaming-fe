@@ -1,0 +1,6 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 40px;  /* ← 여백 줄이고 싶으면 40 → 20으로 */
+  box-sizing: border-box;
+}
