@@ -17,9 +17,6 @@ export function PlayerProvider({ children }) {
   const [isShuffle, setIsShuffle] = useState(false);
   const [repeatMode, setRepeatMode] = useState("none"); // none | all | one
 
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-
   // 현재 재생중인 트랙
   const currentTrack =
     currentIndex >= 0 && currentIndex < queue.length
@@ -109,22 +106,6 @@ export function PlayerProvider({ children }) {
     else setRepeatMode("none");
   };
 
-  // ============================================
-  // 🔥 5. 진행바 업데이트
-  // ============================================
-  const onTimeUpdate = () => {
-    setCurrentTime(audioRef.current.currentTime);
-  };
-
-  const onLoadedMetadata = () => {
-    setDuration(audioRef.current.duration);
-  };
-
-  const seek = (value) => {
-    audioRef.current.currentTime = value;
-    setCurrentTime(value);
-  };
-
   return (
     <PlayerContext.Provider
       value={{
@@ -134,15 +115,12 @@ export function PlayerProvider({ children }) {
         isPlaying,
         isShuffle,
         repeatMode,
-        currentTime,
-        duration,
         startQueue,
         togglePlay,
         playNext,
         playPrev,
         toggleShuffle,
         toggleRepeat,
-        seek,
         audioRef,
       }}
     >
@@ -151,8 +129,6 @@ export function PlayerProvider({ children }) {
       {/* 🔥 실제 오디오 태그 (전역) */}
       <audio
         ref={audioRef}
-        onTimeUpdate={onTimeUpdate}
-        onLoadedMetadata={onLoadedMetadata}
         onEnded={playNext}
       />
     </PlayerContext.Provider>

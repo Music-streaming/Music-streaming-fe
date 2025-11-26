@@ -1,6 +1,7 @@
+/* 전체 페이지 영역: MainLayout의 main 안을 꽉 채우는 박스 */
 .wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 40px;  /* ← 여백 줄이고 싶으면 40 → 20으로 */
+  width: 100%;
+  padding: 60px 80px;
   box-sizing: border-box;
+  margin:0 auto;
 }

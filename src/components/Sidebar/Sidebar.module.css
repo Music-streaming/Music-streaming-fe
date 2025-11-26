@@ -1,5 +1,5 @@
 .sidebar {
-    width: 16rem;               /* w-56 = 14rem */
+    width: 100%;               /* w-56 = 14rem */
     background-color: #202020;  /* Tailwind bg-[#202020] */
     padding: 1rem;              /* p-4 */
     display: flex;

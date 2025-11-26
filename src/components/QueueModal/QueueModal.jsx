@@ -23,7 +23,7 @@ export default function QueueModal({ onClose }) {
               }`}
               onClick={() => startQueue(queue, idx)}
             >
-              <img src={track.albumImage} className={styles.thumb} />
+              <img src={track.cover} className={styles.thumb} />
               <div>
                 <div className={styles.title}>{track.title}</div>
                 <div className={styles.artist}>{track.artist}</div>

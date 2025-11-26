@@ -1,5 +1,7 @@
 import styles from "./MediaHeader.module.css";
 import MoreButton from "../common/MoreButton";
+import PlayButton from '../../assets/PlayButton.png';
+import Shuffle from '../../assets/Shuffle.png';
 
 export default function MediaHeader({
   cover,
@@ -22,13 +24,13 @@ export default function MediaHeader({
         <div className={styles.buttons}>
           {onPlay && (
             <button onClick={onPlay}>
-              <img src="../../../public/playButton.png" />
+              <img src={PlayButton} alt = "paly"/>
             </button>
           )}
 
           {onShuffle && (
             <button onClick={onShuffle}>
-              <img src="../../../public/Shuffle.png" />
+              <img src={Shuffle} alt = "shuffle" />
             </button>
           )}
 

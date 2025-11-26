@@ -43,7 +43,7 @@ export default function PlayerBar() {
         {/* 🔹 좌측 - 트랙 정보 */}
         <div className={styles.left}>
           <img
-            src={isEmpty ? DefaultImage : currentTrack.albumImage}
+            src={isEmpty ? DefaultImage : currentTrack.cover}
             className={styles.thumbnail}
             alt="album"
           />

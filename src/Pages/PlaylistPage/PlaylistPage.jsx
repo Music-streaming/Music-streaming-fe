@@ -19,7 +19,7 @@ const PLAYLISTS = {
         title: '흰수염고래',
         artist: 'YB',
         duration: '4:39',
-        albumImage: 'https://picsum.photos/200?1',
+        cover: 'https://picsum.photos/200?1',
         audioUrl: 'https://example.com/audio1.mp3',
       },
       {
@@ -27,7 +27,7 @@ const PLAYLISTS = {
         title: '천년의 사랑',
         artist: '박완규',
         duration: '4:28',
-        albumImage: 'https://picsum.photos/200?2',
+        cover: 'https://picsum.photos/200?2',
         audioUrl: 'https://example.com/audio2.mp3',
       },
     ],
@@ -44,7 +44,7 @@ const PLAYLISTS = {
         title: '내 마음의 보석상자',
         artist: '해바라기',
         duration: '3:55',
-        albumImage: 'https://picsum.photos/200?3',
+        cover: 'https://picsum.photos/200?3',
         audioUrl: 'https://example.com/audio3.mp3',
       },
     ],
@@ -117,7 +117,7 @@ export default function PlaylistPage() {
                 onClick={() => navigate(`/track/${track.id}`)}
               >
                 <img
-                  src={track.albumImage}
+                  src={track.cover}
                   alt={track.title}
                   className={styles.smallImg}
                 />

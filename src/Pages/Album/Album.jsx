@@ -24,11 +24,11 @@ export default function Album(){
   if (!album) return <div>로딩 중...</div>;
 
    const handlePlayAllTracks = () => {
-    startQueue(album.tracks, 0);
+    startQueue(tracks, 0);
   };
 
   const handleShuffleTracks = () => {
-    const shuffled = [...album.tracks].sort(() => Math.random() - 0.5);
+    const shuffled = [...tracks].sort(() => Math.random() - 0.5);
     startQueue(shuffled, 0);
   };
 
@@ -44,7 +44,7 @@ export default function Album(){
         />
       <TrackList 
          tracks= {tracks}
-         onSelect={(trackId) => navigate(`/track/${trackId}`)}
+         onSelect={(trackId) => navigate(`/song/${trackId}`)}
       />
       <AlbumComments />
       <AlbumRecommend />
