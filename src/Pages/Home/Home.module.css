@@ -1,0 +1,26 @@
+.container {
+  padding: 24px;
+  color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.section {
+  margin-top: 32px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.cardRow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}

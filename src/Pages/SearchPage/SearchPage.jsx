@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ArtistCarousel from '../../components/Search/ArtistCarousel';
-import MediaCard from '../../components/common/MediCard';
+import MediaCard from '../../components/common/MediaCard';
 import MediaListItem from '../../components/common/MediaListItem';
 
 import styles from './SearchPage.module.css';
