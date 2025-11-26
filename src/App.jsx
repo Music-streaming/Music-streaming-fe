@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import MainLayout from './components/MainLayout/MainLayout';
 import Login from './pages/Auth/Login';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import MyPage from './pages/MyPage';
 import SignUp from './pages/Auth/SignUp';
 import Album from './pages/Album/Album';
@@ -26,7 +26,7 @@ function App() {
         <Route path="/album/:id" element={<Album />}></Route>
         <Route path="/song/:id" element={<Song />}></Route>
         <Route path="/playlist/:slug" element={<PlayList />}></Route>
-        <Route path="/search/:id" element={<Search />}></Route>
+        <Route path="/search" element={<Search />}></Route>
       </Route>
       <Route path="*" element={<h2>페이지를 찾을 수 없습니다 (404)</h2>} />
     </Routes>
