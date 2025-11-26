@@ -6,17 +6,20 @@ import App from './App.jsx'
 import { PlayerProvider } from './context/PlayerContext.jsx';
 import { SearchProvider } from './context/SearchContext.jsx';
 import { AlbumProvider } from './context/AlbumContext.jsx';
+import { SongProvider } from  './context/SongContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <AlbumProvider>
-       <PlayerProvider>
-        <SearchProvider>
-          <App />
-          </SearchProvider>
+     <SongProvider>
+        <AlbumProvider>
+          <PlayerProvider>
+            <SearchProvider>
+              <App />
+            </SearchProvider>
           </PlayerProvider>
-          </AlbumProvider>
+        </AlbumProvider>
+    </SongProvider>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )

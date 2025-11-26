@@ -26,10 +26,10 @@ export function AlbumProvider({ children }) {
       },
 
       tracks: [
-        { id: 1, title: "이상비행", duration: "2:35" },
+        { id: 1, title: "이상비행", duration: "2:35"},
         { id: 2, title: "해초", duration: "3:45" },
-        { id: 3, title: "화해", duration: "3:41" },
-        { id: 4, title: "금붕어", duration: "3:32" },
+        { id: 3, title: "화해", duration: "3:41"},
+        { id: 4, title: "금붕어", duration: "3:32"},
       ],
 
       comments: [
@@ -66,7 +66,11 @@ export function AlbumProvider({ children }) {
     };
 
     setAlbum(data.album);
-    setTracks(data.tracks);
+    setTracks(data.tracks.map(track => ({
+      ...track,
+      cover: data.album.cover,
+      artist: data.album.artist,
+    })));
     setComments(data.comments);
     setRecommendAlbums(data.recommend);
   };

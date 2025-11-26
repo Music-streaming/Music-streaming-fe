@@ -56,22 +56,18 @@ export default function AlbumComments() {
 
       {comments.map((c) => (
         <div key={c.id} className={styles.commentCard}>
-          <div className={styles.user}>{c.user}</div>
-          <div className={styles.time}>{c.time}</div>
-          <div className={styles.text}>{c.text}</div>
+          <span className = {styles.user}>{c.user}</span>
+          <span className = {styles.text}>{c.text}</span>
 
-          <div className={styles.commentFooter}>
-            <span className={styles.rating}>평가: {c.rating}</span>
-
-            <button
-              className={styles.likeBtn}
-              onClick={() => likeComment(c.id)}
-            >
+          <div className = {styles.rightGroup}>
+            <span className = {styles.rating}>평가: {c.rating}</span>
+            <button className = {styles.likeBtn} onClick = {() => likeComment(c.id)}>
               ❤️ {c.likes}
             </button>
           </div>
+             <div className={styles.time}>{c.time}</div>
         </div>
       ))}
-    </div>
+      </div>
   );
 }

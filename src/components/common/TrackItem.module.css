@@ -1,7 +1,7 @@
 .track-list {
-  width: 100%;
-  max-width:800px;
+  width: 1000px;
   margin:top;
+  left-padding : 20px;
 }
 
 .track-item {

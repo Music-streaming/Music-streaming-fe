@@ -1,6 +1,6 @@
 .comments {
   width: 100%;
-  max-width: 800px;    /* ← 코멘트 영역 너비 지정 (700~900px 추천) */
+  max-width: 1000px;    /* ← 코멘트 영역 너비 지정 (700~900px 추천) */
   margin: top;       /* ← 중앙 정렬 */
   display: flex;
   flex-direction: column;
@@ -102,4 +102,48 @@
   border: none;
   color: white;
   cursor: pointer;
+}
+
+/* 전체 첫 줄: 가로 3분할 */
+.topRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto; 
+  align-items: center;
+  gap: 20px;
+}
+
+/* 댓글 내용 */
+.text {
+  white-space: normal;
+  word-break: break-word;
+  font-size: 1rem;
+}
+
+/* 이름 */
+.user {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* 평가 + 하트 그룹 */
+.rightGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+/* 좋아요 버튼 */
+.likeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* 시간 (두 번째 줄) */
+.time {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: #bcbcbc;
 }
