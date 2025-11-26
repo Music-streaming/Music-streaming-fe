@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../../style/mediacard.css';
+import './mediacard.css';
 
 function MediaCard({
   imageSrc,

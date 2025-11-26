@@ -1,4 +1,4 @@
-import '../../style/mediacard.css';
+import './mediacard.css';
 import MoreButton from './MoreButton';
 
 function MediaListItem({ imageSrc, title, artist, onClick, onOptionsClick }) {
