@@ -20,7 +20,6 @@
   flex: 1;
   width: 100%;
   overflow-x: hidden;
-  background-image: linear-gradient(to top right, black, gray);
 
   /*플레이어바 공간 확보 — ONLY ONE */
   padding-bottom: 96px;
@@ -36,4 +35,5 @@
   overflow-x: hidden;
   padding-bottom: 0; /* 절대 주지 말 것 */
   height: 100vh;
+  background-image: linear-gradient(to top right, black, gray);
 }

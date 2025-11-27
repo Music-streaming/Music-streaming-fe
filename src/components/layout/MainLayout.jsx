@@ -1,12 +1,19 @@
 import { useState } from 'react';
-import Sidebar from '../layout/Sidebar';
 import { Outlet } from 'react-router-dom';
+
+import Sidebar from '../layout/Sidebar';
 import Playerbar from '../layout/Playerbar';
 import SearchModal from '../Search/SearchModal';
+
+import GuestHeader from '../home/GuestHeader';
+import UserHeader from '../home/UserHeader';
+import { useAuth } from '../../context/useAuth';
+
 import styles from './MainLayout.module.css';
 
 export default function MainLayout() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isLoggedIn } = useAuth();
 
   return (
     <>
@@ -17,6 +24,7 @@ export default function MainLayout() {
 
         <div className={styles.mainArea}>
           <main className={styles.main}>
+            {isLoggedIn ? <UserHeader /> : <GuestHeader />}
             <Outlet />
           </main>
         </div>
