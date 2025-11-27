@@ -1,14 +1,14 @@
 .track-list {
   width: 1000px;
-  margin:top;
-  left-padding : 20px;
+  margin: 20px 0;
+  padding-left: 20px;
 }
 
 .track-item {
   padding: 8px 20px;
   display: flex;
   justify-content: space-between;
-  algin-items : center;
+  align-items: center;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -19,10 +19,10 @@
   gap: 12px;
 }
 
-.tracklist .track-item:nth-child(odd) {
+.track-list .track-item:nth-child(odd) {
   background-color: rgba(169, 169, 169, 1);
 }
 
-.tracklist .track-item:nth-child(even) {
+.track-list .track-item:nth-child(even) {
   background-color: transparent;
 }

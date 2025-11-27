@@ -1,5 +1,5 @@
 import styles from './MediaHeader.module.css';
-import MoreButton from '../common/MoreButton';
+import MoreButton from './MoreButton';
 import PlayButton from '../../assets/PlayButton.png';
 import Shuffle from '../../assets/Shuffle.png';
 

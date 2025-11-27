@@ -1,6 +1,6 @@
 // src/pages/HomeGuest/GuestHeader.jsx
 import { useNavigate } from 'react-router-dom';
-import IconButton from '../../components/common/IconButton';
+import IconButton from '../common/IconButton';
 import styles from './Guest.module.css';
 
 export default function GuestHeader() {

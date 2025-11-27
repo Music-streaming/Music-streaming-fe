@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Sidebar from '../Sidebar/Sidebar';
+import Sidebar from '../layout/Sidebar';
 import { Outlet } from 'react-router-dom';
-import Playerbar from '../Playerbar/Playerbar';
-import SearchModal from '../SearchModal/SearchModal';
+import Playerbar from '../layout/Playerbar';
+import SearchModal from '../Search/SearchModal';
 import styles from './MainLayout.module.css';
 
 export default function MainLayout() {

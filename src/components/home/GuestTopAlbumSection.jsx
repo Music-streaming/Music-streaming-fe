@@ -1,5 +1,4 @@
-// src/pages/HomeGuest/GuestTopAlbumSection.jsx
-import MediaCard from '../../components/common/MediaCard';
+import MediaCard from '../common/MediaCard';
 import styles from './Guest.module.css';
 
 const topAlbums = [

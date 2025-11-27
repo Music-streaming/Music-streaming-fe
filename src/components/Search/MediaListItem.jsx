@@ -1,5 +1,5 @@
-import './mediacard.css';
-import MoreButton from './MoreButton';
+import '../common/Mediacard.css';
+import MoreButton from '../common/MoreButton';
 
 function MediaListItem({ imageSrc, title, artist, onClick, onOptionsClick }) {
   return (

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../components/common/Button';
-import TextInput from '../../components/common/TextInput';
+import Button from '../../components/auth/Button';
+import TextInput from '../../components/auth/TextInput';
 import { login } from '../../api/auth';
 import './Auth.css';
 

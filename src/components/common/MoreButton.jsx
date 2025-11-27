@@ -1,4 +1,4 @@
-function MoreButton({
+export default function MoreButton({
   onClick,
   size = 28,
   dotSize = 4,
@@ -45,5 +45,3 @@ function MoreButton({
     </button>
   );
 }
-
-export default MoreButton;

@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import ArtistCarousel from '../../components/Search/ArtistCarousel';
 import MediaCard from '../../components/common/MediaCard';
-import MediaListItem from '../../components/common/MediaListItem';
+import MediaListItem from '../../components/Search/MediaListItem';
 
 import styles from './SearchPage.module.css';
 

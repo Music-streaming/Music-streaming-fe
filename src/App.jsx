@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import MainLayout from './components/MainLayout/MainLayout';
+import MainLayout from './components/layout/MainLayout';
+import Home from './pages/Home/Guest';
 import Login from './pages/Auth/Login';
-import Home from './pages/Home/HomeGuest';
-import MyPage from './pages/MyPage';
 import SignUp from './pages/Auth/SignUp';
+import MyPage from './pages/MyPage';
 import Album from './pages/Album/Album';
 import Artist from './pages/Artist';
 import Song from './pages/SongPage/Songpage';

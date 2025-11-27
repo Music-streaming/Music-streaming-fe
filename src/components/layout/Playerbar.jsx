@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { usePlayer } from '../../context/PlayerContext';
 import styles from './PlayerBar.module.css';
-import QueueModal from '../QueueModal/QueueModal';
+import QueueModal from './QueueModal';
 
 // 이미지 아이콘들
 import List from '../../assets/list.png';

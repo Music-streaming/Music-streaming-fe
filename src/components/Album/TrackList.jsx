@@ -1,5 +1,5 @@
-import TrackItem from './TrackItem';
-import style from './TrackItem.module.css';
+import TrackItem from '../common/TrackItem';
+import style from '../common/TrackItem.module.css';
 
 function TrackList({ tracks = [], currentTrackId, onSelect }) {
   return (

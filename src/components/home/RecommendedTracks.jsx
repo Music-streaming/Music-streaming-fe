@@ -1,6 +1,6 @@
 // src/pages/HomeGuest/GuestRecommendedTracks.jsx
-import MediaCard from '../../components/common/MediaCard';
-import styles from './Guest.module.css';
+import MediaCard from '../common/MediaCard';
+import styles from './RecommendedTrack.module.css';
 
 const recommendedTracks = [
   {

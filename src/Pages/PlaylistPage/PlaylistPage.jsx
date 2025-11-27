@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './PlaylistPage.module.css';
 import { usePlayer } from '../../context/PlayerContext';
-import MediaHeader from '../../components/Header/MediaHeader';
+import MediaHeader from '../../components/common/MediaHeader';
 
 import MoreIcon from '../../assets/More.png';
 

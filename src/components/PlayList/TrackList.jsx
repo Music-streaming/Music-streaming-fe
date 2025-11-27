@@ -1,9 +1,9 @@
-import styles from "./TrackList.module.css";
+import styles from '../common/TrackItem.module.class';
 
 export default function TrackList({ tracks }) {
   return (
     <div className={styles.list}>
-      {tracks.map(t => (
+      {tracks.map((t) => (
         <div key={t.id} className={styles.row}>
           <img src={t.cover} className={styles.thumb} />
           <div className={styles.info}>

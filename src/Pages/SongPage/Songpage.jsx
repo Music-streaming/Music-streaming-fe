@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { useSong } from "../../context/SongContext";
-import { usePlayer } from "../../context/PlayerContext";
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSong } from '../../context/SongContext';
+import { usePlayer } from '../../context/PlayerContext';
 
-import MediaHeader from "../../components/Header/MediaHeader";
-import LyricsSection from "../../components/LyricsSection/LyricsSection";
-import AlbumRecommend from "../../components/Album/AlbumRecommend";
+import MediaHeader from '../../components/common/MediaHeader';
+import LyricsSection from '../../components/Album/LyricsSection';
+import AlbumRecommend from '../../components/Album/AlbumRecommend';
 
-import styles from "./Songpage.module.css";
+import styles from './Songpage.module.css';
 
 export default function SongPage() {
   const { id } = useParams();

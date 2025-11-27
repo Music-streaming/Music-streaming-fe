@@ -1,19 +1,18 @@
-import { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useAlbum } from "../../context/AlbumContext";
-import { usePlayer } from "../../context/PlayerContext";
+import { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useAlbum } from '../../context/AlbumContext';
+import { usePlayer } from '../../context/PlayerContext';
 
-import MediaHeader from "../../components/Header/MediaHeader";
-import TrackList from "../../components/common/TrackList";
-import AlbumComments from "../../components/Album/AlbumComments";
-import AlbumRecommend from "../../components/Album/AlbumRecommend";
+import MediaHeader from '../../components/common/MediaHeader';
+import TrackList from '../../components/Album/TrackList';
+import AlbumComments from '../../components/Album/AlbumComments';
+import AlbumRecommend from '../../components/Album/AlbumRecommend';
 
+import styles from './Album.module.css';
 
-import styles from "./Album.module.css";
-
-export default function Album(){
+export default function Album() {
   const { albumId } = useParams();
-  const { album, tracks,loadAlbum } = useAlbum();
+  const { album, tracks, loadAlbum } = useAlbum();
   const { startQueue } = usePlayer();
   const navigate = useNavigate();
 
@@ -23,7 +22,7 @@ export default function Album(){
 
   if (!album) return <div>로딩 중...</div>;
 
-   const handlePlayAllTracks = () => {
+  const handlePlayAllTracks = () => {
     startQueue(tracks, 0);
   };
 
@@ -34,17 +33,17 @@ export default function Album(){
 
   return (
     <div className={styles.wrapper}>
-        <MediaHeader
+      <MediaHeader
         cover={album.cover}
         title={album.title}
         subtitle={album.artist}
         extraInfo={album.year}
         onPlay={handlePlayAllTracks}
         onShuffle={handleShuffleTracks}
-        />
-      <TrackList 
-         tracks= {tracks}
-         onSelect={(trackId) => navigate(`/song/${trackId}`)}
+      />
+      <TrackList
+        tracks={tracks}
+        onSelect={(trackId) => navigate(`/song/${trackId}`)}
       />
       <AlbumComments />
       <AlbumRecommend />

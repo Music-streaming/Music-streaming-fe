@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
-import SearchInput from '../SearchModal/Searchinput';
+import SearchInput from '../Search/Searchinput';
 import PlayListline from '../PlayList/PlayListline';
 import styles from './Sidebar.module.css';
 
