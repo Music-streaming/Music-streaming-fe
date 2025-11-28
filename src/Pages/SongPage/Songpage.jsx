@@ -1,17 +1,16 @@
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useSong } from '../../context/SongContext';
-import { usePlayer } from '../../context/PlayerContext';
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useSong } from "../../context/SongContext";
+import { usePlayer } from "../../context/PlayerContext";
 
-import MediaHeader from '../../components/common/MediaHeader';
-import LyricsSection from '../../components/Album/LyricsSection';
-import AlbumRecommend from '../../components/Album/AlbumRecommend';
+import MediaHeader from "../../components/common/MediaHeader";
+import LyricsSection from "../../components/Album/LyricsSection";
+import AlbumRecommend from "../../components/Album/AlbumRecommend";
 
-import styles from './Songpage.module.css';
+import styles from "./SongPage.module.css";
 
 export default function SongPage() {
   const { id } = useParams();
-  // eslint-disable-next-line no-unused-vars
   const { song, loadSong } = useSong();
   const { startQueue } = usePlayer();
 
@@ -21,6 +20,10 @@ export default function SongPage() {
 
   if (!song) return <div>로딩 중...</div>;
 
+  const handlePlaySong = () => {
+    startQueue([song], 0); // 🔥 단일 곡 재생
+  };
+
   return (
     <div className={styles.wrapper}>
       <MediaHeader
@@ -28,12 +31,13 @@ export default function SongPage() {
         title={song.title}
         subtitle={song.artist}
         extraInfo={`${song.album} · ${song.year}`}
-        onPlay={() => startQueue(song.tracks, 0)}
+        onPlay={handlePlaySong}   // 🔥 클릭하면 PlayerContext로 재생
       />
 
       <LyricsSection lyrics={song.lyrics} />
 
-      <AlbumRecommend albumId={song.albumId} />
+      {/* 추천 앨범은 albumId 필요 → dummy 기준으로 제거하거나 유지 */}
+      {/* <AlbumRecommend albumId={song.albumId} /> */}
     </div>
   );
 }
