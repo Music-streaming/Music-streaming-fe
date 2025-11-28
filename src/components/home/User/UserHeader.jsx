@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useAuth } from '../../context/useAuth';
-import ProfileModal from '../common/ProfileModal';
-import styles from './Header.module.css';
+import { useAuth } from '../../../context/useAuth';
+import ProfileModal from '../../common/ProfileModal';
+import styles from '../Header.module.css';
 
 export default function UserHeader() {
   const { user, logout } = useAuth();

@@ -5,8 +5,8 @@ import Sidebar from '../layout/Sidebar';
 import Playerbar from '../layout/Playerbar';
 import SearchModal from '../Search/SearchModal';
 
-import GuestHeader from '../home/GuestHeader';
-import UserHeader from '../home/UserHeader';
+import GuestHeader from '../home/Guest/GuestHeader';
+import UserHeader from '../home/User/UserHeader';
 import { useAuth } from '../../context/useAuth';
 
 import styles from './MainLayout.module.css';

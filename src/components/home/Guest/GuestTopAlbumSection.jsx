@@ -1,4 +1,4 @@
-import MediaCard from '../common/MediaCard';
+import MediaCard from '../../common/MediaCard';
 import styles from './Guest.module.css';
 
 const topAlbums = [
