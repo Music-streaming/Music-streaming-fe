@@ -12,8 +12,3 @@
   display: flex;
   gap: 20px;
 }
-
-.header {
-  display: flex;
-  justify-content: flex-end;
-}
