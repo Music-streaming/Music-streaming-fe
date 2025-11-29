@@ -3,6 +3,8 @@ import { useAuth } from '../../../context/useAuth';
 import ProfileModal from '../../common/ProfileModal';
 import styles from '../Header.module.css';
 
+import UserIcon from '../../../assets/User.png';
+
 export default function UserHeader() {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
@@ -12,7 +14,7 @@ export default function UserHeader() {
       <span className={styles.username}>{user.username}님</span>
 
       <button className={styles.profileIcon} onClick={() => setOpen(true)}>
-        <img src="/icons/user-icon.svg" alt="프로필" />
+        <img src={UserIcon} alt="프로필" />
       </button>
 
       {open && (

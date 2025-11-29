@@ -1,6 +1,6 @@
 // src/pages/HomeGuest/HomeGuest.jsx
 import GuestTopAlbumSection from '../../components/home/Guest/GuestTopAlbumSection';
-import RecommendedTracks from '../../components/home/Guest/RecommendedTracks';
+import RecommendedTracks from '../../components/home/User/RecommendedTracks';
 
 export default function HomeGuest() {
   return (

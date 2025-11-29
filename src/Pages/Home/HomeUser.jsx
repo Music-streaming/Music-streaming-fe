@@ -1,8 +1,8 @@
 import { useAuth } from '../../context/useAuth';
 
 import RecentTracksSection from '../../components/home/User/RecentTrackSection';
-import UserPlaylistsSection from '../../components/home/User/UserPlaylistSection';
-import RecommendedTracks from '../../components/home/User/RecentTrackSection';
+import FollowPlaylistSection from '../../components/home/User/FollowPlaylistSection';
+import RecommendedTracks from '../../components/home/User/RecommendedTracks';
 
 export default function HomeUser() {
   const { user } = useAuth();
@@ -14,7 +14,7 @@ export default function HomeUser() {
   return (
     <div style={{ padding: '20px', color: 'white' }}>
       <RecentTracksSection tracks={recentTracks} />
-      <UserPlaylistsSection playlists={playlists} />
+      <FollowPlaylistSection playlists={playlists} />
       <RecommendedTracks />
     </div>
   );
