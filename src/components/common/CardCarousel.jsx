@@ -15,8 +15,6 @@ export default function CardCarousel({
   const next = () => setIndex((i) => Math.min(i + 1, maxIndex));
   const prev = () => setIndex((i) => Math.max(i - 1, 0));
 
-  if (!items || items.length === 0) return null;
-
   return (
     <section className={styles.section}>
       <h3 className={styles.title}>{title}</h3>

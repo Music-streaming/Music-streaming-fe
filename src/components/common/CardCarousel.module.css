@@ -44,3 +44,8 @@
 .arrowRight:hover {
   opacity: 1;
 }
+
+.emptyText {
+  color: #aaa;
+  font-size: 14px;
+}
