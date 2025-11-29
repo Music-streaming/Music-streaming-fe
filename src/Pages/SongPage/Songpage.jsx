@@ -12,7 +12,7 @@ import styles from "./SongPage.module.css";
 export default function SongPage() {
   const { id } = useParams();
   const { song, loadSong } = useSong();
-  const { startQueue } = usePlayer();
+  const { appendAndPlay } = usePlayer();
 
   useEffect(() => {
     loadSong(id);
@@ -21,7 +21,7 @@ export default function SongPage() {
   if (!song) return <div>로딩 중...</div>;
 
   const handlePlaySong = () => {
-    startQueue([song], 0); // 🔥 단일 곡 재생
+    appendAndPlay([song], 0); // 단일 곡 재생
   };
 
   return (
