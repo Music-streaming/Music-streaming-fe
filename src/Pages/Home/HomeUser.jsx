@@ -1,21 +1,22 @@
 import { useAuth } from '../../context/useAuth';
-
-import RecentTracksSection from '../../components/home/User/RecentTrackSection';
-import FollowPlaylistSection from '../../components/home/User/FollowPlaylistSection';
-import RecommendedTracks from '../../components/home/User/RecommendedTracks';
+import TrackCarousel from '../../components/home/common/TrackCarousel';
+import PlaylistCarousel from '../../components/home/common/PlaylistCarousel';
+import FollowerCarousel from '../../components/home/common/FollowerCarousel';
 
 export default function HomeUser() {
   const { user } = useAuth();
 
-  // 임시 mock 데이터 (서버 연결 전)
-  const recentTracks = user?.recentTracks || [];
   const playlists = user?.playlists || [];
+  const recommendedTracks = user?.recommendedTracks || [];
+  const followers = user?.followers || [];
 
   return (
     <div style={{ padding: '20px', color: 'white' }}>
-      <RecentTracksSection tracks={recentTracks} />
-      <FollowPlaylistSection playlists={playlists} />
-      <RecommendedTracks />
+      <PlaylistCarousel title="FOLLOWING PLAYLISTS" playlists={playlists} />
+
+      <FollowerCarousel title="FOLLOWERS" followers={followers} />
+
+      <TrackCarousel title="RECOMMENDED" tracks={recommendedTracks} />
     </div>
   );
 }

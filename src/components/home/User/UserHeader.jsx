@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../../context/useAuth';
 import ProfileModal from '../../common/ProfileModal';
-import styles from '../Header.module.css';
+import styles from '../common/Header.module.css';
 
 import UserIcon from '../../../assets/User.png';
 
