@@ -3,7 +3,7 @@ import styles from './QueueModal.module.css';
 import Close from '../../assets/close.png';
 
 export default function QueueModal({ onClose }) {
-  const { queue, currentIndex, startQueue } = usePlayer();
+  const { queue, currentIndex , setTrackIndex, deleteTrack} = usePlayer();
 
   return (
     <div className={styles.overlay}>
@@ -21,14 +21,18 @@ export default function QueueModal({ onClose }) {
               className={`${styles.item} ${
                 idx === currentIndex ? styles.active : ''
               }`}
-              onClick={() => startQueue(queue, idx)}
+              onClick={() => setTrackIndex(idx)}
             >
               <img src={track.cover} className={styles.thumb} />
               <div>
                 <div className={styles.title}>{track.title}</div>
                 <div className={styles.artist}>{track.artist}</div>
               </div>
-              <span className={styles.year}>{track.year}</span>
+             <button
+                 className = {styles.deleteBtn}
+                  onClick = {()=> deleteTrack(idx)}>
+                      <img src={Close} alt="close" />
+             </button>
             </div>
           ))}
         </div>

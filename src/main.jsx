@@ -13,17 +13,17 @@ import { AuthProvider } from './context/AuthContext.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <SongProvider>
+      <PlayerProvider>
+        <AuthProvider>
           <AlbumProvider>
-            <PlayerProvider>
+            <SongProvider>
               <SearchProvider>
                 <App />
               </SearchProvider>
-            </PlayerProvider>
+            </SongProvider>
           </AlbumProvider>
-        </SongProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </PlayerProvider>
     </BrowserRouter>
   </StrictMode>
 );

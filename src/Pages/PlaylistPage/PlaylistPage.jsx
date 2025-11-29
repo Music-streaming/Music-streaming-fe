@@ -54,7 +54,7 @@ const PLAYLISTS = {
 export default function PlaylistPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { startQueue } = usePlayer();
+  const { appendAndPlay } = usePlayer();
 
   const [playlist, setPlaylist] = useState(null);
 
@@ -71,12 +71,12 @@ export default function PlaylistPage() {
   }
 
   const handlePlayAll = () => {
-    startQueue(playlist.tracks, 0);
+    appendAndPlay(playlist.tracks);
   };
 
   const handleShuffle = () => {
     const shuffled = [...playlist.tracks].sort(() => Math.random() - 0.5);
-    startQueue(shuffled, 0);
+    appendAndPlay(shuffled);
   };
 
   const copyShareLink = () => {
