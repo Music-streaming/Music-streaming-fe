@@ -23,9 +23,7 @@ export function PlayerProvider({ children }) {
       ? queue[currentIndex]
       : null;
 
-  // ============================================
-  // 🔥 1. 재생목록 시작 (클릭 시 호출)
-  // ============================================
+  //  1. 재생목록 시작 (클릭 시 호출)
   const startQueue = (tracks, startIndex = 0) => {
     if (!tracks || tracks.length === 0) return;
 
@@ -33,16 +31,34 @@ export function PlayerProvider({ children }) {
     setCurrentIndex(startIndex);
     setIsPlaying(true);
 
-    setTimeout(() => {
-      if (audioRef.current) {
-        audioRef.current.play();
-      }
-    }, 50);
+    setTimeout(() => audioRef.current?.paly(),30 );
   };
 
-  // ============================================
-  // 🔥 2. 재생 / 일시정지
-  // ============================================
+  const setTrackIndex =(idx) => {
+    setCurrentIndex(idx);
+    setIsPlaying(true);
+    setTimeout(() => audioRef.current?.paly(), 50);
+  };
+
+ const appendAndPlay = (tracks) => {
+  if(!tracks || tracks.length === 0) return;
+  setQueue((prevQueue) => {
+    const newQueue = [...prevQueue, ...tracks];
+
+    const startIndex = prevQueue.length;
+
+    setCurrentIndex(startIndex);
+    setIsPlaying(true);
+
+    setTimeout(()=> {
+      if(audioRef.current) audioRef.current.play();
+    },50);
+
+    return newQueue;
+  });
+ } ;
+
+  //  2. 재생 / 일시정지
   const togglePlay = () => {
     if (!audioRef.current) return;
 
@@ -55,9 +71,7 @@ export function PlayerProvider({ children }) {
     }
   };
 
-  // ============================================
-  // 🔥 3. 이전곡, 다음곡
-  // ============================================
+  //  3. 이전곡, 다음곡
   const playNext = () => {
     if (repeatMode === "one") {
       audioRef.current.currentTime = 0;
@@ -95,15 +109,31 @@ export function PlayerProvider({ children }) {
     setIsPlaying(true);
   };
 
-  // ============================================
-  // 🔥 4. 셔플 / 반복
-  // ============================================
+  // 4. 셔플 / 반복
   const toggleShuffle = () => setIsShuffle(!isShuffle);
 
   const toggleRepeat = () => {
     if (repeatMode === "none") setRepeatMode("all");
     else if (repeatMode === "all") setRepeatMode("one");
     else setRepeatMode("none");
+  };
+
+  const deleteTrack = (index) => {
+    setQueue((prev)=> {
+      let newQueue = prev.filter((_, i) => i !== index);
+
+      if (index === currentIndex){
+        setCurrentIndex((before) => {
+          if(before >= newQueue.length) return newQueue.length - 1;
+          return before;
+        });
+      }
+      else if (index < currentIndex){
+        setCurrentIndex((prevIndex) => prevIndex - 1);
+      }
+
+      return newQueue;
+    });
   };
 
   return (
@@ -116,12 +146,15 @@ export function PlayerProvider({ children }) {
         isShuffle,
         repeatMode,
         startQueue,
+        appendAndPlay,
         togglePlay,
+        deleteTrack,
         playNext,
         playPrev,
         toggleShuffle,
         toggleRepeat,
         audioRef,
+        setTrackIndex,
       }}
     >
       {children}

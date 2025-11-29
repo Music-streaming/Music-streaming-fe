@@ -3,10 +3,25 @@ import { useAlbum } from "../../context/AlbumContext";
 import styles from "./AlbumComments.module.css";
 
 export default function AlbumComments() {
-  const { comments, addComment, likeComment, sortOrder, changeSort } = useAlbum();
+  const { comments, addComment, sortOrder, changeSort, likeComment } = useAlbum();
 
   const [text, setText] = useState("");
   const [rating, setRating] = useState("만족");
+  const likedKey = "LikedComments";
+  const [likedComments, setLikedComments] = useState(JSON.parse(localStorage.getItem(likedKey)|| "[]"));
+
+  const handleLike = (id) => {
+    if(likedComments.includes(id)){
+      alert("이미 좋아요를 눌렀습니다!");
+      return;
+    }
+
+    likeComment(id);
+
+    const updated = [...likedComments, id];
+    setLikedComments(updated);
+    localStorage.setItem(likedKey, JSON.stringify(updated));
+  }
 
   const handleSubmit = () => {
     if (!text.trim()) return;
@@ -61,7 +76,7 @@ export default function AlbumComments() {
 
           <div className = {styles.rightGroup}>
             <span className = {styles.rating}>평가: {c.rating}</span>
-            <button className = {styles.likeBtn} onClick = {() => likeComment(c.id)}>
+            <button className = {styles.likeBtn} onClick = {() => handleLike(c.id)}>
               ❤️ {c.likes}
             </button>
           </div>
@@ -71,3 +86,4 @@ export default function AlbumComments() {
       </div>
   );
 }
+

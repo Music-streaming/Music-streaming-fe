@@ -8,7 +8,7 @@ export default function AlbumRecommend() {
 
   return (
     <div className={styles.recommend}>
-      <h2 className={styles.title}>추천 앨범</h2>
+      <h2 className={styles.title}>아티스트의 다른 앨범</h2>
 
       <div className={styles.grid}>
         {recommendAlbums.map((a) => (

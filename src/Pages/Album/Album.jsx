@@ -13,7 +13,7 @@ import styles from './Album.module.css';
 export default function Album() {
   const { albumId } = useParams();
   const { album, tracks, loadAlbum } = useAlbum();
-  const { startQueue } = usePlayer();
+  const { appendAndPlay } = usePlayer();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,12 +23,12 @@ export default function Album() {
   if (!album) return <div>로딩 중...</div>;
 
   const handlePlayAllTracks = () => {
-    startQueue(tracks, 0);
+    appendAndPlay(tracks, 0);
   };
 
   const handleShuffleTracks = () => {
     const shuffled = [...tracks].sort(() => Math.random() - 0.5);
-    startQueue(shuffled, 0);
+    appendAndPlay(shuffled, 0);
   };
 
   return (
