@@ -9,10 +9,10 @@ export default function PlaylistCarousel({ title, playlists }) {
       renderItem={(p) => (
         <PlaylistCard
           key={p.id}
-          imageSrc={p.thumbnail}
+          imageSrc={p.imageSrc}
           title={p.title}
-          artist={`${p.ownerName}님`}
-          playlistId={p.id}
+          owner={p.ownerName || ''}
+          slug={p.slug}
         />
       )}
     />

@@ -1,0 +1,34 @@
+/* 전체 카드 박스 */
+.playlist-card {
+  width: 225px; /* MediaCard와 동일 크기 */
+  cursor: pointer;
+}
+
+/* 썸네일 이미지 */
+.playlist-card-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* 텍스트 영역 */
+.playlist-card-text {
+  margin-top: 10px;
+}
+
+/* 플레이리스트 제목 */
+.playlist-card-title {
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+/* 플레이리스트 주인 / owner */
+.playlist-card-owner {
+  font-size: 0.8rem;
+  color: #c7c7c7;
+  margin-top: 2px;
+}

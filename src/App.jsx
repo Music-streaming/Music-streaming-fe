@@ -11,6 +11,7 @@ import Artist from './pages/Artist';
 import Song from './pages/SongPage/Songpage';
 import PlayList from './pages/PlaylistPage/PlaylistPage';
 import Search from './pages/SearchPage/SearchPage';
+import UserProfilePage from './pages/UserPage/UserProfilePage';
 
 //<Route path = "주소규칙" element = {보여 줄 컴포넌트}/> route 주소형식
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/song/:id" element={<Song />}></Route>
         <Route path="/playlist/:slug" element={<PlayList />}></Route>
         <Route path="/search" element={<Search />}></Route>
+        <Route path="/user/:userId" element={<UserProfilePage />} />
       </Route>
       <Route path="*" element={<h2>페이지를 찾을 수 없습니다 (404)</h2>} />
     </Routes>

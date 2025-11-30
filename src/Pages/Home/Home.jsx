@@ -5,5 +5,5 @@ import UserHome from './HomeUser';
 export default function Home() {
   const { isLoggedIn } = useAuth();
 
-  return isLoggedIn ? <GuestHome /> : <UserHome />;
+  return isLoggedIn ? <UserHome /> : <GuestHome />;
 }
