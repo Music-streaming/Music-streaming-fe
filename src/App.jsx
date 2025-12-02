@@ -5,9 +5,7 @@ import MainLayout from './components/layout/MainLayout';
 import Home from './pages/Home/Home';
 import Login from './pages/Auth/Login';
 import SignUp from './pages/Auth/SignUp';
-import MyPage from './pages/MyPage';
 import Album from './pages/Album/Album';
-import Artist from './pages/Artist';
 import Song from './pages/SongPage/Songpage';
 import PlayList from './pages/PlaylistPage/PlaylistPage';
 import Search from './pages/SearchPage/SearchPage';
@@ -22,8 +20,6 @@ function App() {
 
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/myPage" element={<MyPage />}></Route>
-        <Route path="/artist/:id" element={<Artist />}></Route>
         <Route path="/album/:id" element={<Album />}></Route>
         <Route path="/song/:id" element={<Song />}></Route>
         <Route path="/playlist/:slug" element={<PlayList />}></Route>

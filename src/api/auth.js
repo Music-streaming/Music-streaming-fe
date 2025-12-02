@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.45.28:8080';
+import { BASE_URL } from './config';
 
 export async function login({ email, password }) {
   const res = await fetch(`${BASE_URL}/api/auth/login`, {

@@ -63,8 +63,8 @@ const guestRecommendedTracks = [
 export default function HomeGuest() {
   return (
     <div style={{ padding: '20px', color: 'white' }}>
-      <TrackCarousel title="TOP ALBUM" tracks={topAlbums} />
-      <TrackCarousel title="RECOMMENDED" tracks={guestRecommendedTracks} />
+      <TrackCarousel title="최신곡" tracks={topAlbums} />
+      <TrackCarousel title="인기곡" tracks={guestRecommendedTracks} />
     </div>
   );
 }
