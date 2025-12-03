@@ -1,38 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAlbum } from "../../context/AlbumContext";
 import styles from "./AlbumComments.module.css";
 
 export default function AlbumComments() {
-  const { comments, addComment, sortOrder, changeSort, likeComment } = useAlbum();
+  const {
+    comments,
+    commentLikes, 
+    loadComments,
+    loadCommentLikes,
+    toggleLike,
+    writeComment,
+    album,
+    sortOrder,
+    changeSort,
+  } = useAlbum();
 
   const [text, setText] = useState("");
   const [rating, setRating] = useState("만족");
-  const likedKey = "LikedComments";
-  const [likedComments, setLikedComments] = useState(JSON.parse(localStorage.getItem(likedKey)|| "[]"));
 
-  const handleLike = (id) => {
-    if(likedComments.includes(id)){
-      alert("이미 좋아요를 눌렀습니다!");
-      return;
-    }
+  // 댓글 불러오기
+  useEffect(() => {
+    if (album?.id) loadComments(album.id);
+  }, [album]);
 
-    likeComment(id);
+  // 댓글 좋아요 상태 불러오기
+  useEffect(() => {
+    comments.forEach((c) => {
+      loadCommentLikes(c.id);
+    });
+  }, [comments]);
 
-    const updated = [...likedComments, id];
-    setLikedComments(updated);
-    localStorage.setItem(likedKey, JSON.stringify(updated));
-  }
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!text.trim()) return;
-    addComment(text, rating);
+
+    const content = `${text} (${rating})`;
+
+    await writeComment(album.id, content);
     setText("");
+  };
+
+  const handleLike = async (commentId) => {
+    await toggleLike(commentId);
   };
 
   return (
     <div className={styles.comments}>
       <h2 className={styles.sectionTitle}>앨범 코멘트</h2>
 
+      {/*  정렬 */}
       <div className={styles.sortBar}>
         <select
           value={sortOrder}
@@ -44,6 +59,7 @@ export default function AlbumComments() {
         </select>
       </div>
 
+      {/*  댓글 작성 */}
       <div className={styles.inputBox}>
         <textarea
           className={styles.textarea}
@@ -69,21 +85,33 @@ export default function AlbumComments() {
         </div>
       </div>
 
-      {comments.map((c) => (
-        <div key={c.id} className={styles.commentCard}>
-          <span className = {styles.user}>{c.user}</span>
-          <span className = {styles.text}>{c.text}</span>
+      {/* 댓글 리스트 */}
+      {comments.map((c) => {
+        const likeInfo = commentLikes[c.id] || { liked: false, count: 0 };
 
-          <div className = {styles.rightGroup}>
-            <span className = {styles.rating}>평가: {c.rating}</span>
-            <button className = {styles.likeBtn} onClick = {() => handleLike(c.id)}>
-              ❤️ {c.likes}
-            </button>
+        return (
+          <div key={c.id} className={styles.commentCard}>
+            <span className={styles.user}>익명</span>
+
+            <span className={styles.text}>{c.content}</span>
+
+            <div className={styles.rightGroup}>
+              <span className={styles.rating}>{rating}</span>
+
+              <button
+                className={`${styles.likeBtn} ${
+                  likeInfo.liked ? styles.active : ""
+                }`}
+                onClick={() => handleLike(c.id)}
+              >
+                ❤️ {likeInfo.count}
+              </button>
+            </div>
+
+            <div className={styles.time}>{c.createdAt?.slice(0, 16)}</div>
           </div>
-             <div className={styles.time}>{c.time}</div>
-        </div>
-      ))}
-      </div>
+        );
+      })}
+    </div>
   );
 }
-

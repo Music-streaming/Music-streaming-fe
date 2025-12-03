@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.profile {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.genre {
+  font-size: 16px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+.followers {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-top: 4px;
+}

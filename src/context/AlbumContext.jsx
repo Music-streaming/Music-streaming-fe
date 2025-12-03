@@ -1,113 +1,123 @@
 // context/AlbumContext.jsx
 import { createContext, useContext, useState } from "react";
+import { getAlbumDetail } from "../api/album";
+import { 
+  getAlbumComment,
+  postAlbumComment,
+  deleteAlbumComment,
+  putAlbumComment
+} from "../api/comment";
+
+import { 
+  toggleCommentLike,
+  getCommentLikeStatus,
+  getCommentLikeCount
+} from "../api/commentLikeApi";
 
 const AlbumContext = createContext();
+export const useAlbum = () => useContext(AlbumContext);
 
 export function AlbumProvider({ children }) {
   const [album, setAlbum] = useState(null);
   const [tracks, setTracks] = useState([]);
   const [comments, setComments] = useState([]);
+  const [commentLikes, setCommentLikes] = useState({});
   const [recommendAlbums, setRecommendAlbums] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [sortOrder, setSortOrder] = useState("latest");
 
-  const [sortOrder, setSortOrder] = useState("latest"); // latest / popular
-
-  // 앨범로딩
+  // -----------------------
+  // (1) 앨범 정보 로드
+  // -----------------------
   const loadAlbum = async (albumId) => {
-    console.log("앨범 로딩중...", albumId);
+    setLoading(true);
+    try {
+      const data = await getAlbumDetail(albumId);
 
-    // api대체 임시데이터
-    const data = {
-      album: {
-        id: albumId,
-        title: "이상비행 - EP",
-        artist: "한로로",
-        year: 2023,
-        cover: "https://picsum.photos/500?album",
-      },
-
-      tracks: [
-        { id: 1, title: "이상비행", duration: "2:35"},
-        { id: 2, title: "해초", duration: "3:45" },
-        { id: 3, title: "화해", duration: "3:41"},
-        { id: 4, title: "금붕어", duration: "3:32"},
-      ],
-
-      comments: [
-        {
-          id: 101,
-          user: "최연우",
-          time: "1시간 전",
-          text: "노래 너무 좋아용",
-          rating: "만족",
-          likes: 8,
-        },
-        {
-          id: 102,
-          user: "조은비",
-          time: "10분 전",
-          text: "이번 앨범도 기대이상이었어요~",
-          rating: "만족",
-          likes: 10,
-        },
-      ],
-
-      recommend: [
-        {
-          id: 900,
-          title: "UNFORGIVEN",
-          cover: "https://picsum.photos/200?re1",
-        },
-        {
-          id: 901,
-          title: "FEARLESS",
-          cover: "https://picsum.photos/200?re2",
-        },
-      ],
-    };
-
-    setAlbum(data.album);
-    setTracks(data.tracks.map(track => ({
-      ...track,
-      cover: data.album.cover,
-      artist: data.album.artist,
-    })));
-    setComments(data.comments);
-    setRecommendAlbums(data.recommend);
+      setAlbum(data);
+      setTracks(data.tracks || []);
+    } catch (error) {
+      console.error("앨범 로딩 오류:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // 댓글 추가, 임시데이터 사용(api x)
-  const addComment = (text, rating) => {
-    const newComment = {
-      id: Date.now(),
-      user: "익명 사용자",
-      time: "방금 전",
-      text,
-      rating,
-      likes: 0,
-    };
-
-    setComments((prev) => [newComment, ...prev]);
+  // -----------------------
+  // (2) 댓글 불러오기
+  // -----------------------
+  const loadComments = async (albumId) => {
+    try {
+      const data = await getAlbumComment(albumId);
+      setComments(data);
+    } catch (e) {
+      console.error("댓글 로드 실패:", e);
+    }
   };
 
-  // 댓글 좋아요
-  const likeComment = (commentId) => {
-    setComments((prev) =>
-      prev.map((c) =>
-        c.id === commentId ? { ...c, likes: c.likes + 1 } : c
-      )
-    );
+  // -----------------------
+  // (3) 댓글 작성
+  // -----------------------
+  const writeComment = async (albumId, content) => {
+    try {
+      await postAlbumComment(albumId, content);
+      await loadComments(albumId);
+    } catch (e) {
+      console.error("댓글 작성 실패:", e);
+    }
   };
 
-  // 정렬 변경
+  // -----------------------
+  // (4) 댓글 수정
+  // -----------------------
+  const editComment = async (albumId, commentId, content) => {
+    try {
+      await putAlbumComment(albumId, commentId, content);
+      await loadComments(albumId);
+    } catch (e) {
+      console.error("댓글 수정 실패:", e);
+    }
+  };
+
+  // -----------------------
+  // (5) 댓글 삭제
+  // -----------------------
+  const removeComment = async (albumId, commentId) => {
+    try {
+      await deleteAlbumComment(albumId, commentId);
+      await loadComments(albumId);
+    } catch (e) {
+      console.error("댓글 삭제 실패:", e);
+    }
+  };
+
+  // -----------------------
+  // (6) 댓글 좋아요
+  // -----------------------
+  const loadCommentLikes = async (commentId) => {
+    const liked = await getCommentLikeStatus(commentId);
+    const count = await getCommentLikeCount(commentId);
+
+    setCommentLikes(prev => ({
+      ...prev,
+      [commentId]: { liked, count }
+    }));
+  };
+
+  const toggleLike = async (commentId) => {
+    await toggleCommentLike(commentId);
+    await loadCommentLikes(commentId);
+  };
+
+  // -----------------------
+  // (7) 댓글 정렬
+  // -----------------------
   const changeSort = (order) => {
     setSortOrder(order);
 
     setComments((prev) => {
-      if (order === "latest") {
-        return [...prev].sort((a, b) => b.id - a.id);
-      } else {
-        return [...prev].sort((a, b) => b.likes - a.likes);
-      }
+      if (order === "latest") return [...prev].sort((a, b) => b.id - a.id);
+      else return [...prev].sort((a, b) => b.likes - a.likes);
     });
   };
 
@@ -117,18 +127,20 @@ export function AlbumProvider({ children }) {
         album,
         tracks,
         comments,
+        commentLikes,
         recommendAlbums,
-        sortOrder,
+        writeComment,
+        editComment,
+        removeComment,
+        loadComments,
+        toggleLike,
         loadAlbum,
-        addComment,
-        likeComment,
+        sortOrder,
         changeSort,
+        loading,
       }}
     >
       {children}
     </AlbumContext.Provider>
   );
 }
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const useAlbum = () => useContext(AlbumContext);
