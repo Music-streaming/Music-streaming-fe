@@ -91,18 +91,7 @@ export default function PlayerBar() {
             </button>
           </div>
 
-          {/* 🔹 진행바 
-          <div className={styles.progress}>
-            <input
-              type="range"
-              min={0}
-              max={duration || 0}
-              value={isEmpty ? 0 : currentTime}
-              onChange={(e) => seek(Number(e.target.value))}
-              disabled={isEmpty}
-            />
-          </div>
-          */}
+        
         </div>
 
         {/* 🔹 우측 - 재생목록 / 가사 */}

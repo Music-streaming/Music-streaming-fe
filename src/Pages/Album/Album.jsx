@@ -12,21 +12,37 @@ import styles from './Album.module.css';
 
 export default function Album() {
   const { albumId } = useParams();
-  const { album, tracks, loadAlbum } = useAlbum();
-  const { appendAndPlay } = usePlayer();
   const navigate = useNavigate();
 
+  const {
+    album,
+    tracks,
+    loadAlbum,
+    loadComments,
+  } = useAlbum();
+
+  const {appendAndPlay} = usePlayer();
+
   useEffect(() => {
-    loadAlbum(albumId);
+      if (!album) return;
+
+      loadAlbum(albumId);
+      loadComments(albumId);
+
   }, [albumId]);
 
-  if (!album) return <div>로딩 중...</div>;
+  if(!album) return <div>로딩 중...</div>;
+
+
 
   const handlePlayAllTracks = () => {
+    if(!tracks || tracks.length === 0) return;
     appendAndPlay(tracks, 0);
   };
 
   const handleShuffleTracks = () => {
+    if(!tracks || tracks.length === 0) return;
+
     const shuffled = [...tracks].sort(() => Math.random() - 0.5);
     appendAndPlay(shuffled, 0);
   };
@@ -45,8 +61,8 @@ export default function Album() {
         tracks={tracks}
         onSelect={(trackId) => navigate(`/song/${trackId}`)}
       />
-      <AlbumComments />
-      <AlbumRecommend />
+      <AlbumComments albumId = {albumId} />
+      <AlbumRecommend artistId = {album.artistId} currentAlbumId = {albumId} />
     </div>
   );
 }

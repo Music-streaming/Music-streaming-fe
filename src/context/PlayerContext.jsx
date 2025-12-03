@@ -1,4 +1,5 @@
 import { createContext, useContext, useRef, useState } from "react";
+import { getTrackDetail, getTrackPlayback, getTrackLyrics, postTrackPlayback } from "../api/trackApi";
 
 const PlayerContext = createContext(null);
 // eslint-disable-next-line react-refresh/only-export-components
@@ -9,13 +10,39 @@ export function usePlayer() {
 export function PlayerProvider({ children }) {
   const audioRef = useRef(null);
 
-  // 🔥 재생 상태 관련 State
+  // 재생 상태 관련 State
   const [queue, setQueue] = useState([]);              // 트랙 배열
   const [currentIndex, setCurrentIndex] = useState(-1); // 현재 인덱스
   const [isPlaying, setIsPlaying] = useState(false);
 
   const [isShuffle, setIsShuffle] = useState(false);
   const [repeatMode, setRepeatMode] = useState("none"); // none | all | one
+  const [audioUrl, setAudioUrl] = useState("");
+  const [lyrics, setLyrics] = useState("");
+
+  const playTrackById = async (trackId)=>{
+    const detail = await getTrackDetail(trackId);
+
+    const playback = await getTrackPlayback(trackId);
+
+    postTrackPlayback(trackId);
+
+    setAudioUrl(playback.streamUrl || playback.url || "");
+    setLyrics("");
+    setIsPlaying(true);
+
+    setTimeout(()=> {
+      if(audioRef.current){
+        audioRef.current.src = playback.streamUrl || playback.url;
+        audioRef.current.play();
+        loadLyrics(trackId);
+
+      }
+    },30);
+
+
+    return detail;
+  };
 
   // 현재 재생중인 트랙
   const currentTrack =
@@ -24,20 +51,23 @@ export function PlayerProvider({ children }) {
       : null;
 
   //  1. 재생목록 시작 (클릭 시 호출)
-  const startQueue = (tracks, startIndex = 0) => {
+  const startQueue = async (tracks, startIndex = 0) => {
     if (!tracks || tracks.length === 0) return;
 
     setQueue(tracks);
     setCurrentIndex(startIndex);
-    setIsPlaying(true);
+    
+    const track = tracks[startIndex];
 
-    setTimeout(() => audioRef.current?.paly(),30 );
+    if(track?.id){
+      await playTrackById(track.id);
+    }
   };
 
   const setTrackIndex =(idx) => {
     setCurrentIndex(idx);
     setIsPlaying(true);
-    setTimeout(() => audioRef.current?.paly(), 50);
+    setTimeout(() => audioRef.current?.play(), 50);
   };
 
  const appendAndPlay = (tracks) => {
@@ -72,7 +102,7 @@ export function PlayerProvider({ children }) {
   };
 
   //  3. 이전곡, 다음곡
-  const playNext = () => {
+  const playNext = async () => {
     if (repeatMode === "one") {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
@@ -82,22 +112,23 @@ export function PlayerProvider({ children }) {
     let nextIndex = currentIndex + 1;
 
     if (isShuffle) {
+      // eslint-disable-next-line react-hooks/purity
       nextIndex = Math.floor(Math.random() * queue.length);
     } else {
       if (nextIndex >= queue.length) {
         if (repeatMode === "all") nextIndex = 0;
-        else {
-          setIsPlaying(false);
+        else 
           return;
-        }
+        
       }
     }
 
     setCurrentIndex(nextIndex);
-    setIsPlaying(true);
+    const nextTrack = queue[nextIndex];
+    if(nextTrack.id) await playTrackById(nextTrack.id);
   };
 
-  const playPrev = () => {
+  const playPrev = async () => {
     let prevIndex = currentIndex - 1;
 
     if (prevIndex < 0) {
@@ -106,7 +137,10 @@ export function PlayerProvider({ children }) {
     }
 
     setCurrentIndex(prevIndex);
-    setIsPlaying(true);
+
+    const prevTrack = queue[prevIndex];
+    if(prevTrack?.id) 
+      await playTrackById(prevTrack.id);
   };
 
   // 4. 셔플 / 반복
@@ -136,6 +170,11 @@ export function PlayerProvider({ children }) {
     });
   };
 
+  const loadLyrics = async (trackId) => {
+    const data = await getTrackLyrics(trackId);
+    setLyrics(data.lyrics || "");
+  };
+
   return (
     <PlayerContext.Provider
       value={{
@@ -146,6 +185,7 @@ export function PlayerProvider({ children }) {
         isShuffle,
         repeatMode,
         startQueue,
+        playTrackById,
         appendAndPlay,
         togglePlay,
         deleteTrack,
@@ -154,12 +194,14 @@ export function PlayerProvider({ children }) {
         toggleShuffle,
         toggleRepeat,
         audioRef,
+        audioUrl,
+        lyrics,
         setTrackIndex,
       }}
     >
       {children}
 
-      {/* 🔥 실제 오디오 태그 (전역) */}
+      {/* 실제 오디오 태그 (전역) */}
       <audio
         ref={audioRef}
         onEnded={playNext}
