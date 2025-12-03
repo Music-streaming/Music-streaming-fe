@@ -49,7 +49,7 @@ export default function Album() {
     <div className={styles.wrapper}>
       <MediaHeader
         cover={album.thumbnailUrl}
-        title={album.name}
+        title={album.title}
         subtitle={album.artist}
         extraInfo={album.releaseDate}
         onPlay={handlePlayAllTracks}
