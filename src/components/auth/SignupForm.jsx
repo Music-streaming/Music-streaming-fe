@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import TextInput from './TextInput';
-import { signup } from '../../api/auth';
+import { signup } from '../../api/authApi';
 
 export default function SignUpForm() {
   const [email, setEmail] = useState('');

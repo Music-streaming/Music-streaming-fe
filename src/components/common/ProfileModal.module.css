@@ -32,8 +32,14 @@
 
 .stats {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 18px;
+  justify-content: center;
+  margin-bottom: 16px;
+  align-items: center;
+  gap: 100px;
+}
+
+.stats div {
+  text-align: center;
 }
 
 .number {
