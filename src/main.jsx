@@ -14,19 +14,21 @@ import { ArtistProvider } from './context/ArtistContext.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <PlayerProvider>
-        <AuthProvider>
-          <AlbumProvider>
+
+      <AuthProvider>
+        <PlayerProvider>
+          <SearchProvider>
             <ArtistProvider>
-            <SongProvider>
-              <SearchProvider>
-                <App />
-              </SearchProvider>
-            </SongProvider>
+              <AlbumProvider>
+                <SongProvider>
+                  <App />
+                </SongProvider>
+              </AlbumProvider>
             </ArtistProvider>
-          </AlbumProvider>
-        </AuthProvider>
-      </PlayerProvider>
+          </SearchProvider>
+        </PlayerProvider>
+      </AuthProvider>
+
     </BrowserRouter>
   </StrictMode>
 );
