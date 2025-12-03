@@ -3,45 +3,29 @@ import { useEffect, useState } from 'react';
 
 import UserProfileView from './UserProfileView';
 import { useFollow } from './useFollow';
+import apiClient from '../../api/apiClient'; // ⭐ API 클라이언트 import
 
 export default function UserProfileContainer() {
   const { userId } = useParams();
   const [userData, setUserData] = useState(null);
 
-  // 🟢 훅은 무조건 컴포넌트 최상단에서 호출 (조건문 X)
   const { isFollowing, followers, toggleFollow, setInitialFollowers } =
     useFollow(0, false);
 
   useEffect(() => {
     async function fetchData() {
-      const data = {
-        id: userId,
-        nickname: 'hanloro',
-        avatar:
-          'https://i.pinimg.com/736x/fd/cb/68/fdcb68bc189298ae434a7af6bdf5160d.jpg',
-        followers: 123,
-        following: 55,
-        playlists: [
-          {
-            id: 1,
-            slug: 'emotional',
-            title: '감성 플레이리스트',
-            imageSrc:
-              'https://i.pinimg.com/736x/fd/cb/68/fdcb68bc189298ae434a7af6bdf5160d.jpg',
-          },
-          {
-            id: 2,
-            slug: 'favourites',
-            title: '드라이브용',
-            imageSrc:
-              'https://i.pinimg.com/736x/fd/cb/68/fdcb68bc189298ae434a7af6bdf5160d.jpg',
-          },
-        ],
-        recentTracks: [],
-      };
+      try {
+        // ⭐ API 호출
+        const res = await apiClient(`/users/${userId}`, { method: 'GET' });
 
-      setUserData(data);
-      setInitialFollowers(data.followers); // 🔥 userData 로딩 후 값 주입
+        // ⭐ 받아 온 데이터 반영
+        setUserData(res);
+
+        // ⭐ 팔로워 초기값 세팅
+        setInitialFollowers(res.followers);
+      } catch (err) {
+        console.error('유저 데이터 불러오기 실패:', err);
+      }
     }
 
     fetchData();
