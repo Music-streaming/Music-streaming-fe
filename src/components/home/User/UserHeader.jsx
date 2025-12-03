@@ -1,66 +1,53 @@
-// src/components/layout/header/UserHeader.jsx
+// src/layout/common/UserHeader.jsx
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../../context/useAuth';
 import ProfileModal from '../../common/ProfileModal';
-import styles from '../common/Header.module.css';
 import UserIcon from '../../../assets/User.png';
-import { getFollowerCount, getFollowingCount } from '../../../api/userApi';
+import { getMyInfo } from '../../../api/userApi';
+import styles from '../common/Header.module.css';
 
 export default function UserHeader() {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const [profile, setProfile] = useState(null);
 
+  // 모달 열릴 때 프로필 불러오기
   useEffect(() => {
     if (!open) return;
-    if (!user || !user.id) {
-      console.warn('⚠️ 로그인 사용자 id가 없습니다.');
-      return;
-    }
 
-    async function fetchProfile() {
+    async function fetch() {
       try {
-        // 팔로워/팔로잉 카운트 병렬 요청
-        const [followersRes, followingRes] = await Promise.all([
-          getFollowerCount(user.id),
-          getFollowingCount(user.id),
-        ]);
-
-        // 백엔드 응답 형태에 맞춰서 필드 이름 수정해줘야 함
-        const followers = followersRes.data.count ?? 0;
-        const following = followingRes.data.count ?? 0;
-
-        // 모달에서 쓸 프로필 정보
-        setProfile({
-          username: user.username,
-          followers,
-          following,
-        });
+        const res = await getMyInfo();
+        setProfile(res.data);
       } catch (e) {
         console.error('프로필 불러오기 실패:', e);
       }
     }
 
-    fetchProfile();
-  }, [open, user]);
+    fetch();
+  }, [open]);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <div className={styles.header}>
-      <span className={styles.username}>{user.username}님</span>
+      <span className={styles.username}>{user?.username}님</span>
 
-      <button className={styles.profileIcon} onClick={() => setOpen(true)}>
+      <button className={styles.profileIcon} onClick={handleOpen}>
         <img src={UserIcon} alt="프로필" />
       </button>
 
-      {open && profile && (
-        <ProfileModal
-          username={profile.username}
-          followers={profile.followers}
-          following={profile.following}
-          onClose={() => setOpen(false)}
-          onLogout={logout}
-        />
-      )}
+      {/* 모달 렌더 조건 (profile 없어도 모달은 뜨게 변경!) */}
+      <ProfileModal
+        open={open}
+        onClose={() => setOpen(false)}
+        username={profile?.username ?? user?.username}
+        followers={profile?.followers ?? 0}
+        following={profile?.following ?? 0}
+        onLogout={logout}
+      />
     </div>
   );
 }
