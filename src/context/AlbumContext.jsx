@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // context/AlbumContext.jsx
 import { createContext, useContext, useState } from "react";
 import { getAlbumDetail } from "../api/album";
@@ -15,8 +16,48 @@ import {
 } from "../api/commentLikeApi";
 
 const AlbumContext = createContext();
-// eslint-disable-next-line react-refresh/only-export-components
 export const useAlbum = () => useContext(AlbumContext);
+
+// -----------------------------------------
+// 🔥 (A) 여기 바로 정규화 함수 넣어버리면 됨
+// -----------------------------------------
+
+// 앨범 내부 트랙 정규화
+function normalizeAlbumTrack(t) {
+  return {
+    id: t.id,
+    title: t.name,
+    trackNumber: t.trackNumber,
+    discNumber: t.discNumber,
+    durationMs: t.durationMs,
+  };
+}
+
+// 앨범 전체 정규화
+function normalizeAlbum(album) {
+  return {
+    id: album.id,
+    title: album.name,
+    artist: album.artist,
+    thumbnailUrl: album.thumbnailUrl,
+    releaseDate: album.releaseDate,
+    totalTracks: album.totalTracks,
+    tracks: (album.tracks || []).map(normalizeAlbumTrack),
+  };
+}
+
+// 댓글 정규화 (선택사항이지만 넣어주는 게 안정적)
+function normalizeComment(c) {
+  return {
+    id: c.id,
+    content: c.content,
+    username: c.username,
+    createdAt: c.createdAt,
+    likes: c.likes ?? 0,
+  };
+}
+
+// -----------------------------------------
 
 export function AlbumProvider({ children }) {
   const [album, setAlbum] = useState(null);
@@ -36,8 +77,11 @@ export function AlbumProvider({ children }) {
     try {
       const data = await getAlbumDetail(albumId);
 
-      setAlbum(data);
-      setTracks(data.tracks || []);
+      // 🔥 여기서 정규화 적용
+      const normalized = normalizeAlbum(data);
+
+      setAlbum(normalized);
+      setTracks(normalized.tracks);
     } catch (error) {
       console.error("앨범 로딩 오류:", error);
     } finally {
@@ -51,7 +95,11 @@ export function AlbumProvider({ children }) {
   const loadComments = async (albumId) => {
     try {
       const data = await getAlbumComment(albumId);
-      setComments(data);
+
+      // 🔥 댓글도 정규화
+      const normalized = data.map(normalizeComment);
+
+      setComments(normalized);
     } catch (e) {
       console.error("댓글 로드 실패:", e);
     }
@@ -100,9 +148,9 @@ export function AlbumProvider({ children }) {
     const liked = await getCommentLikeStatus(commentId);
     const count = await getCommentLikeCount(commentId);
 
-    setCommentLikes(prev => ({
+    setCommentLikes((prev) => ({
       ...prev,
-      [commentId]: { liked, count }
+      [commentId]: { liked, count },
     }));
   };
 
@@ -118,8 +166,13 @@ export function AlbumProvider({ children }) {
     setSortOrder(order);
 
     setComments((prev) => {
-      if (order === "latest") return [...prev].sort((a, b) => b.id - a.id);
-      else return [...prev].sort((a, b) => b.likes - a.likes);
+      const sorted = [...prev];
+      if (order === "latest") {
+        sorted.sort((a, b) => b.id - a.id);
+      } else {
+        sorted.sort((a, b) => b.likes - a.likes);
+      }
+      return sorted;
     });
   };
 
