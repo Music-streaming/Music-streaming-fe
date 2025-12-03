@@ -24,8 +24,6 @@ export default function Album() {
   const {appendAndPlay} = usePlayer();
 
   useEffect(() => {
-      if (!album) return;
-
       loadAlbum(albumId);
       loadComments(albumId);
 
@@ -50,10 +48,10 @@ export default function Album() {
   return (
     <div className={styles.wrapper}>
       <MediaHeader
-        cover={album.cover}
-        title={album.title}
+        cover={album.thumbnailUrl}
+        title={album.name}
         subtitle={album.artist}
-        extraInfo={album.year}
+        extraInfo={album.releaseDate}
         onPlay={handlePlayAllTracks}
         onShuffle={handleShuffleTracks}
       />

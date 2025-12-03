@@ -22,7 +22,7 @@ export function SearchProvider({ children }) {
       // 🔥 앨범 결과는 반드시 id 필드로 통일해야 AlbumPage로 이동 가능
       albums: [
         {
-          id: "2yUrwTLHDWBrW74Ewuw6RX",
+          id: "10",
           name: "SPAGHETTI",
           artist: "르세라핌",
           thumbnailUrl: "https://picsum.photos/300?10",
