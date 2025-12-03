@@ -9,6 +9,7 @@ import { SearchProvider } from './context/SearchContext.jsx';
 import { AlbumProvider } from './context/AlbumContext.jsx';
 import { SongProvider } from './context/SongContext.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import { ArtistProvider } from './context/ArtistContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,11 +17,13 @@ createRoot(document.getElementById('root')).render(
       <PlayerProvider>
         <AuthProvider>
           <AlbumProvider>
+            <ArtistProvider>
             <SongProvider>
               <SearchProvider>
                 <App />
               </SearchProvider>
             </SongProvider>
+            </ArtistProvider>
           </AlbumProvider>
         </AuthProvider>
       </PlayerProvider>

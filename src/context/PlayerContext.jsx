@@ -1,10 +1,36 @@
 import { createContext, useContext, useRef, useState } from "react";
 import { getTrackDetail, getTrackPlayback, getTrackLyrics, postTrackPlayback } from "../api/trackApi";
+import YouTube from "react-youtube";
 
-const PlayerContext = createContext(null);
+const PlayerContext = createContext();
 // eslint-disable-next-line react-refresh/only-export-components
 export function usePlayer() {
   return useContext(PlayerContext);
+}
+
+export function normalizeTrack(track) {
+  const p = track.playable;
+
+  return {
+    id: p.spotifyTrackId,
+    title: p.title,
+    artist: p.artist,
+    album: p.album,
+    imageUrl: p.thumbnailUrl,
+    durationMs: p.durationMs,
+
+    // 유튜브 재생 관련
+    youtubeVideoId: p.youtubeVideoId,
+    youtubeEmbedUrl: p.youtubeEmbedUrl ?? `https://www.youtube.com/embed/${p.youtubeVideoId}`,
+    youtubeWatchUrl: p.youtubeWatchUrl ?? `https://www.youtube.com/watch?v=${p.youtubeVideoId}`,
+
+    // 부가 정보
+    likeCount: track.likeCount,
+    liked: track.liked,
+    satisfaction: track.satisfaction,
+    recentPlaybacks: track.recentPlaybacks,
+    lyrics: track.lyrics
+  };
 }
 
 export function PlayerProvider({ children }) {
@@ -19,6 +45,9 @@ export function PlayerProvider({ children }) {
   const [repeatMode, setRepeatMode] = useState("none"); // none | all | one
   const [audioUrl, setAudioUrl] = useState("");
   const [lyrics, setLyrics] = useState("");
+  const [currentTrack, setCurrentTrack] = useState();
+  const playerRef = useRef(null);
+
 
   const playTrackById = async (trackId)=>{
     const detail = await getTrackDetail(trackId);

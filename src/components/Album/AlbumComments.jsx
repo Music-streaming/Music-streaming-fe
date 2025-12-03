@@ -90,7 +90,7 @@ export default function AlbumComments() {
         const likeInfo = commentLikes[c.id] || { liked: false, count: 0 };
 
         return (
-          <div key={c.id} className={styles.commentCard}>
+          <div key={c.commentId} className={styles.commentCard}>
             <span className={styles.user}>익명</span>
 
             <span className={styles.text}>{c.content}</span>

@@ -11,10 +11,10 @@ import { ArtistAlbums } from "./ArtistAlbums";
 export default function ArtistPage() {
 
   const { artistId } = useParams();
-  const { artist, topTracks, albums, loading, loadArtists } = useArtist();
+  const { artist, topTracks, albums, loading, loadArtist } = useArtist();
 
   useEffect(()=> {
-    loadArtists(artistId);
+    loadArtist(artistId);
   },[artistId]);
 
   if(loading || !artist) return <div>로딩 중...</div>

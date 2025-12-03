@@ -1,5 +1,7 @@
 import { api } from"./axiosInstance";
 
+
+
 //1. 트랙 기본 정보
 export const getTrackDetail = async(trackId) =>{
     const res = await api.get(`/api/tracks/${trackId}`);

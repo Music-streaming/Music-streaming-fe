@@ -15,6 +15,7 @@ import {
 } from "../api/commentLikeApi";
 
 const AlbumContext = createContext();
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAlbum = () => useContext(AlbumContext);
 
 export function AlbumProvider({ children }) {
@@ -22,6 +23,7 @@ export function AlbumProvider({ children }) {
   const [tracks, setTracks] = useState([]);
   const [comments, setComments] = useState([]);
   const [commentLikes, setCommentLikes] = useState({});
+  // eslint-disable-next-line no-unused-vars
   const [recommendAlbums, setRecommendAlbums] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sortOrder, setSortOrder] = useState("latest");
