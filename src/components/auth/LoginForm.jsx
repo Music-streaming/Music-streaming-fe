@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login as apiLogin } from '../../api/auth';
+import { login as apiLogin } from '../../api/authApi';
 import { useAuth } from '../../context/useAuth';
 import TextInput from './TextInput';
 import Button from './Button';
@@ -27,6 +27,7 @@ export default function LoginForm() {
       setAuthUser({
         username: data.username ?? email.split('@')[0],
         email,
+        token: data.token,
         recentTracks: data.recentTracks ?? [],
         playlists: data.playlists ?? [],
         followers: data.followers ?? 0,

@@ -5,8 +5,6 @@ export default function ProfileModal({
   followers,
   following,
   onClose,
-  onGoMyPage,
-  onEditProfile,
   onLogout,
 }) {
   return (
@@ -28,15 +26,6 @@ export default function ProfileModal({
             <span className={styles.label}>팔로잉</span>
           </div>
         </div>
-
-        {/* 메뉴 */}
-        <button className={styles.button} onClick={onGoMyPage}>
-          마이페이지
-        </button>
-
-        <button className={styles.button} onClick={onEditProfile}>
-          회원정보 수정
-        </button>
 
         <button className={styles.logout} onClick={onLogout}>
           로그아웃
