@@ -11,7 +11,7 @@ import MediaListItem from '../../components/Search/MediaListItem';
 import styles from './SearchPage.module.css';
 
 export default function SearchPage() {
-  const { artists, media, tracks, search } = useSearch();
+  const { artists, albums, tracks, search } = useSearch();   // ✔ media → albums
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,37 +19,39 @@ export default function SearchPage() {
   const q = params.get('q');
 
   useEffect(() => {
-    if (q && q.trim() != '') {
-      search(q);
-    }
+    if (q && q.trim() !== '') search(q);
   }, [q]);
 
   return (
     <div className={styles.wrapper}>
       <div>
+        {/* 아티스트 */}
         <section className={styles.section}>
           <h5 className={styles.title}>아티스트</h5>
           <ArtistCarousel artists={artists} />
         </section>
 
+        {/* 앨범 */}
         <section className={styles.section}>
           <h5 className={styles.title}>앨범</h5>
           <div className={styles.row}>
-            {media.slice(0, 4).map((item) => (
+
+            {albums.slice(0, 4).map((item) => (
               <MediaCard
-                key={item.musicId}
-                imageSrc={item.cover}
-                title={item.title}
-                artist={item.artist}
-                albumId={item.albumId}
-                musicId={item.musicId}
-                artistId={item.artistId}
+                key={item.id}                                    // ✔ id
+                imageSrc={item.thumbnailUrl}                    // ✔ thumbnailUrl
+                title={item.name}                               // ✔ name
+                artist={item.artist}                            // ✔ artist
+                onClick={() => navigate(`/album/${item.id}`)}   // ✔ album detail 이동
               />
             ))}
+
           </div>
         </section>
       </div>
+
       <div>
+        {/* 노래 */}
         <section className={styles.right}>
           <h5 className={styles.title}>노래</h5>
           <div className={styles.trackSection}>
@@ -60,7 +62,6 @@ export default function SearchPage() {
                 title={track.title}
                 artist={track.artist}
                 onClick={() => navigate(`/track/${track.id}`)}
-                onOptionsClick={() => handleMore(track)}
               />
             ))}
           </div>

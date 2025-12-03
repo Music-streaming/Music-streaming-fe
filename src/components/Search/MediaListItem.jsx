@@ -18,7 +18,6 @@ function MediaListItem({ imageSrc, title, artist, onClick, onOptionsClick }) {
           onOptionsClick && onOptionsClick();
         }}
       >
-        <MoreButton />
       </button>
     </div>
   );

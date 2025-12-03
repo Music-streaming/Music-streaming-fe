@@ -1,5 +1,7 @@
 import apiClient from './apiClient';
 
+
+
 //1. 트랙 기본 정보
 export const getTrackDetail = async (trackId) => {
   const res = await apiClient.get(`/api/tracks/${trackId}`);

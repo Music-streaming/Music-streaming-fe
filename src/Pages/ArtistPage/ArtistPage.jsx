@@ -11,19 +11,31 @@ import { ArtistAlbums } from "./ArtistAlbums";
 export default function ArtistPage() {
 
   const { artistId } = useParams();
-  const { artist, topTracks, albums, loading, loadArtists } = useArtist();
+  const { 
+    artist,
+    topTracks,
+    albums,
+    loading,
+    loadArtist,
+    loadTopTracks,
+    loadAlbums 
+  } = useArtist();
 
-  useEffect(()=> {
-    loadArtists(artistId);
-  },[artistId]);
+  useEffect(() => {
+    loadArtist(artistId);
+    loadTopTracks(artistId);
+    loadAlbums(artistId);
+  }, [artistId]);
 
-  if(loading || !artist) return <div>로딩 중...</div>
+  if (loading || !artist) {
+    return <div>로딩 중...</div>;
+  }
 
-  return(
-    <div className = {styles.wrapper}>
+  return (
+    <div className={styles.wrapper}>
       <ArtistHeader artist={artist} />
-      <ArtistTopTracks tracks = {topTracks}/>
-      <ArtistAlbums albums = {albums}/>
+      <ArtistTopTracks tracks={topTracks} />
+      <ArtistAlbums albums={albums} />
     </div>
   );
 }

@@ -18,7 +18,7 @@ export  function ArtistTopTracks({ tracks }) {
       <div className={styles.list}>
         {tracks.map((track, idx) => (
           <MediaListItem
-            key={track.id}
+            key={track.musicId}
             imageSrc={track.imageUrl}
             title={track.name}
             artist={track.artistName}

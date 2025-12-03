@@ -9,21 +9,26 @@ import { SearchProvider } from './context/SearchContext.jsx';
 import { AlbumProvider } from './context/AlbumContext.jsx';
 import { SongProvider } from './context/SongContext.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import { ArtistProvider } from './context/ArtistContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <PlayerProvider>
-        <AuthProvider>
-          <AlbumProvider>
-            <SongProvider>
-              <SearchProvider>
-                <App />
-              </SearchProvider>
-            </SongProvider>
-          </AlbumProvider>
-        </AuthProvider>
-      </PlayerProvider>
+
+      <AuthProvider>
+        <PlayerProvider>
+          <SearchProvider>
+            <ArtistProvider>
+              <AlbumProvider>
+                <SongProvider>
+                  <App />
+                </SongProvider>
+              </AlbumProvider>
+            </ArtistProvider>
+          </SearchProvider>
+        </PlayerProvider>
+      </AuthProvider>
+
     </BrowserRouter>
   </StrictMode>
 );
