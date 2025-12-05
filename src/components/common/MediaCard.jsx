@@ -6,7 +6,6 @@ function MediaCard({
   title,
   artist,
   onClick,
-  albumId,
   musicId,
   artistId,
 }) {
