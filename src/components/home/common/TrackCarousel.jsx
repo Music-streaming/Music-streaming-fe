@@ -1,7 +1,7 @@
 import MediaCard from '../../common/MediaCard';
 import CardCarousel from '../../common/CardCarousel';
 
-export default function TrackCarousel({ title, tracks,onAlbumClick }) {
+export default function TrackCarousel({ title, tracks,onAlbumClick = () => {}, }) {
   return (
     <CardCarousel
       title={title}

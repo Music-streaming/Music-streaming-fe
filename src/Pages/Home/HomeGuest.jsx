@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import TrackCarousel from '../../components/home/common/TrackCarousel';
+
 
 const topAlbums = [
   {
@@ -79,10 +81,16 @@ const guestRecommendedTracks = [
 ];
 
 export default function HomeGuest() {
+
+  const navigate = useNavigate();
+
+  const handleAlbumClick = (albumId) => {
+    navigate(`/album/${albumId}`);
+  };
   return (
     <div style={{ padding: '20px', color: 'white' }}>
-      <TrackCarousel title="최신곡" tracks={topAlbums} />
-      <TrackCarousel title="인기곡" tracks={guestRecommendedTracks} />
+      <TrackCarousel title="최신곡" tracks={topAlbums} onAlbumClick = {handleAlbumClick}/>
+      <TrackCarousel title="인기곡" tracks={guestRecommendedTracks}  onAlbumClick = {handleAlbumClick}/>
     </div>
   );
 }
