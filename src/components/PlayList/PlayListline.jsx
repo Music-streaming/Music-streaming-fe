@@ -6,10 +6,7 @@ import Star from '../../assets/Star.png';
 export default function PlayListline() {
   const navigate = useNavigate();
 
-  const playlists = [
-    { name: 'FAVORITES', slug: 'favourites' },
-    { name: '7080', slug: '7080' },
-  ];
+  const playlists = [];
 
   const handleNavigate = (slug) => {
     navigate(`/playlist/${slug}`);
