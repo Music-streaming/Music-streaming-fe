@@ -31,7 +31,11 @@ export default function CardCarousel({
             className={styles.inner}
             style={{ transform: `translateX(-${index * itemWidth}px)` }}
           >
-            {items.map(renderItem)}
+            {items.map((item, idx) => (
+              <div key={idx} className={styles.item}>
+                {renderItem(item)}
+              </div>
+            ))}
           </div>
         </div>
 

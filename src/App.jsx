@@ -21,7 +21,7 @@ function App() {
 
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/album/:id" element={<Album />}></Route>
+        <Route path="/album/:albumId" element={<Album />}></Route>
         <Route path="/song/:id" element={<Song />}></Route>
         <Route path="/playlist/:slug" element={<PlayList />}></Route>
         <Route path="/search" element={<Search />}></Route>

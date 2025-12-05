@@ -3,7 +3,7 @@ import apiClient from '../api/apiClient';
 
 //앨범 정보
 export const getAlbumDetail = async (albumId) => {
-    const res = await apiClient.get(`/api/ablum/${albumId}`);
+    const res = await apiClient.get(`/api/album/${albumId}`);
     return res.data;
 }
 
