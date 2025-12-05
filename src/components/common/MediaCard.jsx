@@ -5,14 +5,16 @@ function MediaCard({
   imageSrc,
   title,
   artist,
-  onClick,
   musicId,
   artistId,
+  albumId,
 }) {
   return (
-    <div className="media-card" onClick={onClick}>
+    <div className="media-card" >
+      <Link to={albumId ? `/album/${albumId}` : `/music/${musicId}`}>
         <img src={imageSrc} alt={title} className="card-image" />
-      <div className="card-text">
+        </Link>
+      <div className="card-text" >
         <Link to={`/music/${musicId}`} className="card-title">
           {title}
         </Link>
