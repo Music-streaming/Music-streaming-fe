@@ -14,7 +14,7 @@ export default function CardCarousel({
 
   const next = () => setIndex((i) => Math.min(i + 1, maxIndex));
   const prev = () => setIndex((i) => Math.max(i - 1, 0));
-
+  const safeItems = Array.isArray(items) ? items : [];
   return (
     <section className={styles.section}>
       <h3 className={styles.title}>{title}</h3>
@@ -31,11 +31,7 @@ export default function CardCarousel({
             className={styles.inner}
             style={{ transform: `translateX(-${index * itemWidth}px)` }}
           >
-            {items.map((item, idx) => (
-              <div key={idx} className={styles.item}>
-                {renderItem(item)}
-              </div>
-            ))}
+            {safeItems.map((item) => renderItem(item))}
           </div>
         </div>
 

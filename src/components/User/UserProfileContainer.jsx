@@ -1,37 +1,51 @@
+// src/components/User/UserProfileContainer.jsx
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import UserProfileView from './UserProfileView';
 import { useFollow } from './useFollow';
-import apiClient from '../../api/apiClient'; // ⭐ API 클라이언트 import
+
+// 🔹 mock 유저 데이터
+const MOCK_USERS = {
+  1: {
+    id: 1,
+    nickname: '레미파솔',
+    avatar:
+      'https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3467.jpg?w=360',
+    followers: 123,
+    following: 55,
+    playlists: [
+      {
+        slug: 7080,
+        title: '7080',
+        imageSrc:
+          'https://img.freepik.com/premium-vector/abstract-grainy-gradient-background-with-vibrant-colors_336924-6082.jpg',
+      },
+    ],
+  },
+};
 
 export default function UserProfileContainer() {
   const { userId } = useParams();
+
   const [userData, setUserData] = useState(null);
 
-  const { isFollowing, followers, toggleFollow, setInitialFollowers } =
+  const { followers, isFollowing, toggleFollow, setInitialFollowers } =
     useFollow(0, false);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        // ⭐ API 호출
-        const res = await apiClient(`/users/${userId}`, { method: 'GET' });
+    // mock 데이터 불러오기
+    const data = MOCK_USERS[userId];
 
-        // ⭐ 받아 온 데이터 반영
-        setUserData(res);
-
-        // ⭐ 팔로워 초기값 세팅
-        setInitialFollowers(res.followers);
-      } catch (err) {
-        console.error('유저 데이터 불러오기 실패:', err);
-      }
-    }
-
-    fetchData();
+    if (!data) return;
+    // eslint-disable-next-line
+    setUserData(data);
+    setInitialFollowers(data.followers);
   }, [userId, setInitialFollowers]);
 
-  if (!userData) return null;
+  if (!userData) {
+    return <div style={{ color: 'white' }}>유저 정보를 불러오는 중...</div>;
+  }
 
   return (
     <UserProfileView

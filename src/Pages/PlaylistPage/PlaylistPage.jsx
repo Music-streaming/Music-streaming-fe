@@ -37,7 +37,8 @@ const PLAYLISTS = {
     title: '7080',
     owner: '최연우',
     updatedAt: '어제 업데이트됨',
-    coverImage: 'https://picsum.photos/500/500?7080',
+    coverImage:
+      'https://img.freepik.com/premium-vector/abstract-grainy-gradient-background-with-vibrant-colors_336924-6082.jpg',
     tracks: [
       {
         id: 10,

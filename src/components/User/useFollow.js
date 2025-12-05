@@ -1,25 +1,24 @@
-import { useState, useCallback } from 'react';
+// src/hooks/useFollow.js
+import { useState } from 'react';
 
 export function useFollow(initialFollowers = 0, initialIsFollowing = false) {
   const [followers, setFollowers] = useState(initialFollowers);
   const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
 
-  // 🔥 외부에서 초기 followers를 다시 세팅할 수 있는 함수
-  const setInitialFollowers = useCallback((value) => {
-    setFollowers(value);
-  }, []);
-
+  // 팔로우 / 언팔 전환 함수
   const toggleFollow = () => {
-    setIsFollowing((prev) => {
-      const next = !prev;
-      setFollowers((count) => count + (next ? 1 : -1));
-      return next;
-    });
+    setFollowers((prev) => prev + (isFollowing ? -1 : 1));
+    setIsFollowing((prev) => !prev);
+  };
+
+  // API 또는 mock 데이터에서 처음 followers 값을 넣기 위해 존재
+  const setInitialFollowers = (value) => {
+    setFollowers(value);
   };
 
   return {
-    isFollowing,
     followers,
+    isFollowing,
     toggleFollow,
     setInitialFollowers,
   };

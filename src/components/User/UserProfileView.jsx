@@ -7,6 +7,9 @@ export default function UserProfileView({
   isFollowing,
   onToggleFollow,
 }) {
+  // recentTracks가 없을 수도 있으니까 안전하게 기본값 처리
+  const recentTracks = userData.recentTracks || [];
+
   return (
     <div className={styles.container}>
       <div className={styles.profileHeader}>
@@ -34,8 +37,8 @@ export default function UserProfileView({
 
       <PlaylistCarousel title="플레이리스트" playlists={userData.playlists} />
 
-      {userData.recentTracks.length > 0 && (
-        <TrackCarousel title="최근 들은 음악" tracks={userData.recentTracks} />
+      {recentTracks.length > 0 && (
+        <TrackCarousel title="최근 들은 음악" tracks={recentTracks} />
       )}
     </div>
   );
