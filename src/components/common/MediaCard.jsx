@@ -12,9 +12,7 @@ function MediaCard({
 }) {
   return (
     <div className="media-card" onClick={onClick}>
-      <Link to={`/album/${albumId}`}>
         <img src={imageSrc} alt={title} className="card-image" />
-      </Link>
       <div className="card-text">
         <Link to={`/music/${musicId}`} className="card-title">
           {title}

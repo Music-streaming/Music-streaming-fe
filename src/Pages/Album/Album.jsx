@@ -60,7 +60,7 @@ export default function Album() {
         onSelect={(trackId) => navigate(`/song/${trackId}`)}
       />
       <AlbumComments albumId = {albumId} />
-      <AlbumRecommend artistId = {album.artistId} currentAlbumId = {albumId} />
+      <AlbumRecommend artistName = {album.artist} currentAlbumId = {album.id} />
     </div>
   );
 }
